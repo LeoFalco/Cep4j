@@ -1,10 +1,10 @@
 package me.leo.cepj4.core;
 
-import me.leo.cepj4.model.Cep;
+import me.leo.cepj4.model.CepModel;
 
 public interface CepResolver {
 
-    public Cep cep(int cep);
+    public CepModel cep(int cep);
 
-    public Cep cep(String cep);
+    public CepModel cep(String cep);
 }
