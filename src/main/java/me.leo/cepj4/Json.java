@@ -13,20 +13,15 @@ import java.util.Map;
 public class Json {
     private static final ObjectMapper MAPPER;
 
-    private static ObjectMapper createMapperWithCustomConfig() {
+    static {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
-        return mapper;
-    }
-
-
-    static {
-        MAPPER = createMapperWithCustomConfig();
+        MAPPER = mapper;
     }
 
     private Json() {

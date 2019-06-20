@@ -1,4 +1,4 @@
-package me.leo.cepj4.core.resolvers;
+package me.leo.cepj4.core.resolvers.viacep;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

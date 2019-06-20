@@ -1,7 +1,7 @@
 package me.leo.cepj4.core;
 
 import me.leo.cepj4.Json;
-import me.leo.cepj4.core.resolvers.ViaCepResolver;
+import me.leo.cepj4.core.resolvers.viacep.ViaCepResolver;
 import org.junit.Test;
 
 public class ViaCepResolverTest {

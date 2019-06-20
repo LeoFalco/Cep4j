@@ -1,8 +1,9 @@
-package me.leo.cepj4.core.resolvers;
+package me.leo.cepj4.core.resolvers.postmon;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
 import lombok.Setter;
+import me.leo.cepj4.core.resolvers.CepRenponsable;
 import me.leo.cepj4.model.CepResponse;
 
 @Getter

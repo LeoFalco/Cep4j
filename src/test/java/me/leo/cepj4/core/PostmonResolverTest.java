@@ -1,7 +1,7 @@
 package me.leo.cepj4.core;
 
 import me.leo.cepj4.Json;
-import me.leo.cepj4.core.resolvers.PostmonResolver;
+import me.leo.cepj4.core.resolvers.postmon.PostmonResolver;
 import me.leo.cepj4.model.CepResponse;
 import org.junit.Test;
 

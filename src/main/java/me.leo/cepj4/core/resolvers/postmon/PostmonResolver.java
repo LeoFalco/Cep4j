@@ -1,7 +1,8 @@
-package me.leo.cepj4.core.resolvers;
+package me.leo.cepj4.core.resolvers.postmon;
 
 import me.leo.cepj4.Http;
 import me.leo.cepj4.Json;
+import me.leo.cepj4.core.resolvers.ResolverBase;
 import me.leo.cepj4.exceptions.ServiceError;
 import me.leo.cepj4.model.CepResponse;
 import me.leo.cepj4.model.Response;
