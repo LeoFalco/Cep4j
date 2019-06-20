@@ -1,10 +1,14 @@
 package me.leo.cepj4.core;
 
-import me.leo.cepj4.model.CepModel;
+import me.leo.cepj4.Futures;
+import me.leo.cepj4.Util;
+import me.leo.cepj4.core.resolvers.Resolver;
+import me.leo.cepj4.model.CepResponse;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public class Cep4j implements Cep4jInterface {
 
@@ -12,21 +16,18 @@ public class Cep4j implements Cep4jInterface {
 
 
     @Override
-    public CompletableFuture<CepModel> fetch(int cep) {
-        return fetch(Integer.toString(cep));
-    }
+    public CompletableFuture<CepResponse> fetch(String input) {
 
-    @Override
-    public CompletableFuture<CepModel> fetch(String input) {
-        String inputTratado = Util.tratarInput(input);
+        return CompletableFuture
+                .supplyAsync(() -> Util.tratarInput(input))
+                .thenCompose(inputTratado -> {
+                    List<CompletableFuture<CepResponse>> futures = resolvers
+                            .stream()
+                            .map(resolver -> resolver.resolve(inputTratado))
+                            .collect(Collectors.toList());
 
-        CompletableFuture[] futures = resolvers.stream()
-                .map(resolver -> resolver.resolve(inputTratado))
-                .toArray(CompletableFuture[]::new);
-
-
-        return CompletableFuture.anyOf(futures)
-                .thenApply(value -> ((CepModel) value));
+                    return Futures.firstCompleted(futures);
+                });
 
     }
 
