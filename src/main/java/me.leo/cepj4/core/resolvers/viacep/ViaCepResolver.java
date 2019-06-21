@@ -14,7 +14,6 @@ public class ViaCepResolver extends ResolverBase {
 
     private static final String BASE_URL = "https://viacep.com.br/ws/";
 
-
     @Override
     public Response fetch(String cep) throws Exception{
         String uri = BASE_URL.concat(cep).concat("/json");

@@ -14,13 +14,13 @@ public interface Resolver {
 
     Response fetch(String cep) throws Exception;
 
-    void handleError(ResponseMap response);
-
     CepResponse parseResponse(ResponseMap response);
 
     ServiceError parseError(ResponseMap response);
 
     boolean isSuccess(ResponseMap response);
+
+    void handleError(ResponseMap response);
 
     String getName();
 

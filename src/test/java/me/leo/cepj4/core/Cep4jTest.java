@@ -18,4 +18,26 @@ public class Cep4jTest {
 
         System.out.println("Resultado: " + new Json().stringfy(join));
     }
+
+
+    @Test
+    public void fetch2() {
+
+        Cep4j cep4j = new Cep4j(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
+
+        CepResponse join = cep4j.fetch("15154000").join();
+
+        System.out.println("Resultado: " + new Json().stringfy(join));
+    }
+
+
+    @Test
+    public void fetch3() {
+
+        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+
+        CepResponse join = cep4j.fetch("15154000").join();
+
+        System.out.println("Resultado: " + new Json().stringfy(join));
+    }
 }

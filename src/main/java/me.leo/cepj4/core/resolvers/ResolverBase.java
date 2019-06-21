@@ -13,6 +13,7 @@ public abstract class ResolverBase implements Resolver {
     @Override
     public final CompletableFuture<CepResponse> resolve(String string) {
         return CompletableFuture.supplyAsync(() -> {
+
             try {
                 Response response = fetch(string);
                 Map<String, Object> map = toMap(response);
@@ -22,9 +23,9 @@ public abstract class ResolverBase implements Resolver {
             } catch (ServiceError e) {
                 throw e;
             } catch (Exception e) {
-                e.printStackTrace();
                 throw ServiceError.ofException(getName(), e);
             }
+
         });
     }
 
