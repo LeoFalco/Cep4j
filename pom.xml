@@ -3,12 +3,22 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cep4j</artifactId>
-    <groupId>me.leo</groupId>
+    <groupId>com.github.leofalco</groupId>
     <version>0.1</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>false</skipTests>
+
+        <spotbugs.version>3.1.11</spotbugs.version>
+        <maven-clean.version>3.1.0</maven-clean.version>
+        <git-commit-id.version>2.2.4</git-commit-id.version>
+        <maven-dependency.version>3.1.1</maven-dependency.version>
+        <maven-compiler.version>3.8.1</maven-compiler.version>
+
         <jackson.version>2.9.9</jackson.version>
+        <lombok.version>1.18.8</lombok.version>
+        <httpclient.version>4.5.9</httpclient.version>
+        <junit.version>4.12</junit.version>
     </properties>
     <build>
         <plugins>
@@ -16,13 +26,13 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>3.1.11</version>
+                <version>${spotbugs.version}</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${maven-clean.version}</version>
                 <executions>
                     <execution>
                         <phase>clean</phase>
@@ -49,7 +59,7 @@
             <plugin>
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
-                <version>2.2.4</version>
+                <version>${git-commit-id.version}</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -61,28 +71,20 @@
                 <configuration>
                     <!--  human-readable date -->
                     <dateFormat>dd_MM_yyyy_HH_mm_ss</dateFormat>
-                    <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>${project.basedir}/src/main/resources/git-info.properties</generateGitPropertiesFilename>
-                    <verbose>false</verbose>
-                    <!-- remove informacoes sensiveis-->
-                    <excludeProperties>
-                        <excludeProperty>git.remote.origin.url</excludeProperty>
-                        <excludeProperty>git.build.user.email</excludeProperty>
-                        <excludeProperty>git.commit.user.email</excludeProperty>
-                    </excludeProperties>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>${maven-dependency.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler.version}</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -92,12 +94,12 @@
     </build>
 
   <dependencies>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.8</version>
-      <scope>provided</scope>
-    </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>${lombok.version}</version>
+          <scope>provided</scope>
+      </dependency>
       <dependency>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-databind</artifactId>
@@ -111,14 +113,13 @@
       <dependency>
           <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpclient</artifactId>
-          <version>4.5.9</version>
+          <version>${httpclient.version}</version>
       </dependency>
       <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
-          <version>4.12</version>
+          <version>${junit.version}</version>
           <scope>test</scope>
       </dependency>
   </dependencies>
-
 </project>
