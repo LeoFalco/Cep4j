@@ -7,27 +7,36 @@ import me.leo.cepj4.core.resolvers.viacep.ViaCepResolver;
 import me.leo.cepj4.model.CepResponse;
 import org.junit.Test;
 
-public class Cep4jTest {
+public class SpeedTest {
 
     @Test
-    public void fetch() {
+    public void fetchPostMon() {
 
-        Cep4j cep4j = new Cep4j(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
-
-        CepResponse join = cep4j.fetch("15043330").join();
-
-        System.out.println("Resultado: " + new Json().stringfy(join));
-    }
-
-
-    @Test
-    public void fetch2() {
-
-        Cep4j cep4j = new Cep4j(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
+        Cep4j cep4j = new Cep4j(new PostmonResolver());
 
         CepResponse join = cep4j.fetch("15154000").join();
 
         System.out.println("Resultado: " + new Json().stringfy(join));
     }
 
+    @Test
+    public void fetchViaCep() {
+
+        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+
+        CepResponse join = cep4j.fetch("15154000").join();
+
+        System.out.println("Resultado: " + new Json().stringfy(join));
+    }
+
+
+    @Test
+    public void fetchCorreios() {
+
+        Cep4j cep4j = new Cep4j(new CorreiosResolver());
+
+        CepResponse join = cep4j.fetch("15154000").join();
+
+        System.out.println("Resultado: " + new Json().stringfy(join));
+    }
 }

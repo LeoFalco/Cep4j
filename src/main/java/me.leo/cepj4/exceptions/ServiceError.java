@@ -1,6 +1,10 @@
 package me.leo.cepj4.exceptions;
 
 import lombok.Getter;
+import me.leo.cepj4.Operator;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Getter
 public class ServiceError extends RuntimeException {
@@ -8,12 +12,16 @@ public class ServiceError extends RuntimeException {
     private final Content content;
 
     public ServiceError(String serviceName, String code, String message, String description) {
-        super(String.join(", \n", serviceName, code, message, description));
+        super(Stream.of(serviceName, code, message, description).collect(Collectors.joining(", ", "\n\t", "")));
         this.content = new Content(serviceName, code, message, description);
     }
 
     public static ServiceError ofException(String serviceName, Exception e) {
-        throw new ServiceError(serviceName, e.getClass().getSimpleName(), e.getMessage(), e.getCause().getMessage());
+        throw new ServiceError(serviceName,
+                Operator.elvis(() -> e.getClass().getSimpleName()),
+                Operator.elvis(e::getMessage),
+                Operator.elvis(() -> e.getCause().getMessage())
+        );
     }
 
 

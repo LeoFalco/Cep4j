@@ -6,6 +6,7 @@ import me.leo.cepj4.model.Response;
 import me.leo.cepj4.model.ResponseMap;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class ResolverBase implements Resolver {
@@ -16,10 +17,21 @@ public abstract class ResolverBase implements Resolver {
 
             try {
                 Response response = fetch(string);
+                Objects.requireNonNull(response, "Response can not be null");
+                Objects.requireNonNull(response.getContent(), "Response.content can not be null");
+
                 Map<String, Object> map = toMap(response);
+                Objects.requireNonNull(map, "toMap can not return null");
+
                 ResponseMap responseMap = new ResponseMap(response.getStatus(), map);
+                Objects.requireNonNull(responseMap, "ResponseMap can not return null");
+                Objects.requireNonNull(responseMap.getMap(), "ResponseMap.map can not return null");
+
                 handleError(responseMap);
-                return parseResponse(responseMap);
+                CepResponse cepResponse = parseResponse(responseMap);
+                Objects.requireNonNull(cepResponse, "CepResponse can not return null");
+
+                return cepResponse;
             } catch (ServiceError e) {
                 throw e;
             } catch (Exception e) {
