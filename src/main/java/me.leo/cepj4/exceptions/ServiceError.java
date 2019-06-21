@@ -7,8 +7,8 @@ public class ServiceError extends RuntimeException {
 
     private final Content content;
 
-    public ServiceError(String code, String message, String description, String serviceName) {
-        super(message);
+    public ServiceError(String serviceName, String code, String message, String description) {
+        super(String.join(", \n", serviceName, code, message, description));
         this.content = new Content(serviceName, code, message, description);
     }
 

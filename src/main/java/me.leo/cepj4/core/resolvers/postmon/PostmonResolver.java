@@ -6,6 +6,9 @@ import me.leo.cepj4.core.resolvers.ResolverBase;
 import me.leo.cepj4.exceptions.ServiceError;
 import me.leo.cepj4.model.CepResponse;
 import me.leo.cepj4.model.Response;
+import me.leo.cepj4.model.ResponseMap;
+
+import java.util.Map;
 
 public class PostmonResolver extends ResolverBase {
 
@@ -17,20 +20,24 @@ public class PostmonResolver extends ResolverBase {
     }
 
     @Override
-    public CepResponse parseResponse(Response response) {
-        return Json.convert(response.getMap(), PostmonResponse.class).toCepResponse();
+    public CepResponse parseResponse(ResponseMap response) {
+        return new Json().convert(response.getMap(), PostmonResponse.class).toCepResponse();
     }
 
     @Override
-    public ServiceError parseError(Response response) {
+    public ServiceError parseError(ResponseMap response) {
         return new ServiceError(response.getStatus(), response.getStatus(),response.getStatus(), getName());
     }
 
     @Override
-    public boolean isSuccess(Response response) {
+    public boolean isSuccess(ResponseMap response) {
         return "200".equals(response.getStatus());
     }
 
+    @Override
+    public Map<String, Object> toMap(Response response) {
+        return new Json().toMap(response.getContent());
+    }
 
     @Override
     public String getName() {

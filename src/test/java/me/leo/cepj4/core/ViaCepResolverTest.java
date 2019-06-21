@@ -12,7 +12,7 @@ public class ViaCepResolverTest {
         Cep4j cep4j = new Cep4j(viaCepResolver);
         cep4j.fetch("15110000")
                 .thenAccept(cepModel -> {
-                    System.out.println("resultado: " + Json.toJson(cepModel));
+                    System.out.println("resultado: " + new Json().stringfy(cepModel));
                 }).join();
 
     }
@@ -23,7 +23,7 @@ public class ViaCepResolverTest {
         Cep4j cep4j = new Cep4j(viaCepResolver);
         cep4j.fetch("15043-330")
                 .thenAccept(cepModel -> {
-                    System.out.println("resultado: " + Json.toJson(cepModel));
+                    System.out.println("resultado: " + new Json().stringfy(cepModel));
                 }).join();
 
     }
