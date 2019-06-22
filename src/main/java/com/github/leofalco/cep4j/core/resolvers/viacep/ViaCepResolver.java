@@ -1,12 +1,12 @@
 package com.github.leofalco.cep4j.core.resolvers.viacep;
 
-import com.github.leofalco.cep4j.core.resolvers.ResolverBase;
-import com.github.leofalco.cep4j.exceptions.ServiceException;
-import com.github.leofalco.cep4j.model.Response;
-import com.github.leofalco.cep4j.model.ResponseMap;
 import com.github.leofalco.cep4j.Http;
 import com.github.leofalco.cep4j.Json;
+import com.github.leofalco.cep4j.core.resolvers.ResolverBase;
+import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Response;
+import com.github.leofalco.cep4j.model.ResponseMap;
 
 import java.util.Map;
 
@@ -22,12 +22,21 @@ public class ViaCepResolver extends ResolverBase {
 
     @Override
     public CepResponse parseResponse(ResponseMap response) {
-        return new Json().convert(response.getMap(), ViaCepResponse.class).toCepResponse();
+
+        Map map = response.getMap();
+        String uf = (String) response.getMap().get("uf");
+        String cep = (String) map.get("cep");
+        String cidade = (String) map.get("localidade");
+        String bairro = (String) map.get("bairro");
+        String logradouro = (String) map.get("logradouro");
+        String ibge = (String) map.get("ibge");
+
+        return new CepResponse(getName(), cep, null, uf, cidade, bairro, logradouro, ibge);
     }
 
     @Override
     public ServiceException parseError(ResponseMap response) {
-        return new ServiceException(response.getStatus(), String.valueOf(response.getMap().get("erro")), "", getName());
+        return new ServiceException(getName(), response.getStatus(), "Erro", "Cep não encontrado na base do ViaCep");
     }
 
     @Override

@@ -23,7 +23,7 @@ public class PostmonResolverTest implements ResolverTest {
         Assert.assertEquals("São Paulo", cep.getEstado());
         Assert.assertEquals("SP", cep.getUf());
         Assert.assertEquals("Guapiaçu", cep.getCidade());
-        Assert.assertEquals("", cep.getBairro());
+        Assert.assertNull(cep.getBairro());
         Assert.assertNull(cep.getLogradouro());
         Assert.assertEquals("3517505", cep.getIbge());
     }
@@ -83,7 +83,7 @@ public class PostmonResolverTest implements ResolverTest {
             Assert.assertEquals("Postmon", serviceException.getServiceName());
             Assert.assertEquals("404", serviceException.getCode());
             Assert.assertEquals("Erro", serviceException.getMessage());
-            Assert.assertEquals("Cep não encontrado", serviceException.getDescription());
+            Assert.assertEquals("Cep não encontrado na base do Postmon", serviceException.getDescription());
         }
     }
 }

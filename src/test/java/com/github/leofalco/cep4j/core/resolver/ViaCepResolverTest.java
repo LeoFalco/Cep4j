@@ -1,32 +1,90 @@
 package com.github.leofalco.cep4j.core.resolver;
 
-import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.core.Cep4j;
 import com.github.leofalco.cep4j.core.resolvers.viacep.ViaCepResolver;
+import com.github.leofalco.cep4j.exceptions.ManyException;
+import com.github.leofalco.cep4j.exceptions.ServiceException;
+import com.github.leofalco.cep4j.model.CepResponse;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class ViaCepResolverTest {
+import java.util.List;
+import java.util.concurrent.CompletionException;
+
+public class ViaCepResolverTest implements ResolverTest {
 
     @Test
-    public void fetchString() {
-        ViaCepResolver viaCepResolver = new ViaCepResolver();
-        Cep4j cep4j = new Cep4j(viaCepResolver);
-        cep4j.fetch("15110000")
-                .thenAccept(cepModel -> {
-                    System.out.println("resultado: " + new Json().stringfy(cepModel));
-                }).join();
+    public void fetchGuapiacu() {
+        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+        CepResponse cep = cep4j.fetch("15110000").join();
 
+        System.out.println("cep = " + cep);
+        Assert.assertEquals("ViaCep", cep.getResolver());
+        Assert.assertEquals("15110000", cep.getCep());
+        Assert.assertNull(cep.getEstado());
+        Assert.assertEquals("SP", cep.getUf());
+        Assert.assertEquals("Guapiaçu", cep.getCidade());
+        Assert.assertNull(cep.getBairro());
+        Assert.assertNull(cep.getLogradouro());
+        Assert.assertEquals("3517505", cep.getIbge());
     }
 
     @Test
-    public void fetchString2() {
-        ViaCepResolver viaCepResolver = new ViaCepResolver();
-        Cep4j cep4j = new Cep4j(viaCepResolver);
-        cep4j.fetch("15043-330")
-                .thenAccept(cepModel -> {
-                    System.out.println("resultado: " + new Json().stringfy(cepModel));
-                }).join();
+    public void fetchRuaAuriflama() {
+        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+        CepResponse cep = cep4j.fetch("15043330").join();
 
+        Assert.assertEquals("ViaCep", cep.getResolver());
+        Assert.assertEquals("15043330", cep.getCep());
+        Assert.assertNull(cep.getEstado());
+        Assert.assertEquals("SP", cep.getUf());
+        Assert.assertEquals("São José do Rio Preto", cep.getCidade());
+        Assert.assertEquals("Eldorado", cep.getBairro());
+        Assert.assertEquals("Rua Auriflama", cep.getLogradouro());
+        Assert.assertEquals("3549805", cep.getIbge());
     }
 
+    @Test
+    public void fetchEngenheiroBalduino() {
+
+        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+
+        CepResponse cep = cep4j.fetch("15154000").join();
+
+        Assert.assertEquals("ViaCep", cep.getResolver());
+        Assert.assertEquals("15154000", cep.getCep());
+        Assert.assertNull(cep.getEstado());
+        Assert.assertEquals("SP", cep.getUf());
+        Assert.assertEquals("Engenheiro Balduíno (Monte Aprazível)", cep.getCidade());
+        Assert.assertNull(cep.getBairro());
+        Assert.assertNull(cep.getLogradouro());
+        Assert.assertEquals("3531407", cep.getIbge());
+    }
+
+
+    @Test
+    public void failWenCepNotExistsWithCorrectMessages() {
+        try {
+            Cep4j cep4j = new Cep4j(new ViaCepResolver());
+            cep4j.fetch("15110040").join();
+        } catch (CompletionException e) {
+
+            Assert.assertEquals(ManyException.class, e.getCause().getClass());
+
+            ManyException manyException = (ManyException) e.getCause();
+            List<Throwable> errorList = manyException.getThrowableList();
+            Throwable throwable = errorList.get(0);
+            Throwable cause = throwable.getCause();
+
+            Assert.assertEquals(1, errorList.size());
+            Assert.assertEquals(CompletionException.class, throwable.getClass());
+            Assert.assertEquals(ServiceException.class, cause.getClass());
+
+            ServiceException serviceException = (ServiceException) cause;
+            Assert.assertEquals("ViaCep", serviceException.getServiceName());
+            Assert.assertEquals("200", serviceException.getCode());
+            Assert.assertEquals("Erro", serviceException.getMessage());
+            Assert.assertEquals("Cep não encontrado na base do ViaCep", serviceException.getDescription());
+        }
+    }
 }

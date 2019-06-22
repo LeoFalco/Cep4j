@@ -25,7 +25,6 @@ public class Futures {
                 future.complete(val);
             } else {
                 errors.add(exc);
-                exc.printStackTrace();
                 if (settled.incrementAndGet() == count) {
                     // Complete with the last exception. You can aggregate all the exceptions if you wish.
                     future.completeExceptionally(new ManyException(errors));

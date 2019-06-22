@@ -37,7 +37,7 @@ public class PostmonResolver extends ResolverBase {
 
     @Override
     public ServiceException parseError(ResponseMap response) {
-        return new ServiceException(getName(), response.getStatus(), "Erro", "Cep não encontrado");
+        return new ServiceException(getName(), response.getStatus(), "Erro", "Cep não encontrado na base do Postmon");
     }
 
     @Override
