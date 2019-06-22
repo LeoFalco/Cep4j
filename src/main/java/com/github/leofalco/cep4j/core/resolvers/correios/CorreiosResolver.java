@@ -1,7 +1,7 @@
 package com.github.leofalco.cep4j.core.resolvers.correios;
 
 import com.github.leofalco.cep4j.core.resolvers.ResolverBase;
-import com.github.leofalco.cep4j.exceptions.ServiceError;
+import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.Http;
 import com.github.leofalco.cep4j.Xml;
@@ -27,11 +27,11 @@ public class CorreiosResolver extends ResolverBase {
 
     @Override
     public CepResponse parseResponse(ResponseMap response) {
-        return new Xml().convert(response.getMap(), CorreiosResponse.class).toCepResponse();
+        return Xml.convert(response.getMap(), CorreiosResponse.class).toCepResponse();
     }
 
     @Override
-    public ServiceError parseError(ResponseMap response) {
+    public ServiceException parseError(ResponseMap response) {
         return null;
     }
 
@@ -47,7 +47,7 @@ public class CorreiosResolver extends ResolverBase {
 
     @Override
     public Map<String, Object> toMap(Response response) {
-        return new Xml().toMap(response.getContent());
+        return Xml.toMap(response.getContent());
     }
 
     private static String requestBody(String cep) {

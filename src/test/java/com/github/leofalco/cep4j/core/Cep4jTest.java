@@ -10,7 +10,7 @@ import org.junit.Test;
 public class Cep4jTest {
 
     @Test
-    public void fetch() {
+    public void fetchRuaAuriflamaTest() {
 
         Cep4j cep4j = new Cep4j(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
 
@@ -21,7 +21,7 @@ public class Cep4jTest {
 
 
     @Test
-    public void fetch2() {
+    public void fetchDistritoTest() {
 
         Cep4j cep4j = new Cep4j(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
 

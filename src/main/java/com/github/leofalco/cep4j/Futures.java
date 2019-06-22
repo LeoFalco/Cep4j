@@ -1,6 +1,6 @@
 package com.github.leofalco.cep4j;
 
-import com.github.leofalco.cep4j.exceptions.ManyRuntimeException;
+import com.github.leofalco.cep4j.exceptions.ManyException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +28,7 @@ public class Futures {
                 exc.printStackTrace();
                 if (settled.incrementAndGet() == count) {
                     // Complete with the last exception. You can aggregate all the exceptions if you wish.
-                    future.completeExceptionally(new ManyRuntimeException(errors));
+                    future.completeExceptionally(new ManyException(errors));
                 }
 
             }

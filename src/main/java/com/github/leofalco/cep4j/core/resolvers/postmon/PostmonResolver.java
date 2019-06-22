@@ -3,10 +3,10 @@ package com.github.leofalco.cep4j.core.resolvers.postmon;
 import com.github.leofalco.cep4j.Http;
 import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.core.resolvers.ResolverBase;
-import com.github.leofalco.cep4j.exceptions.ServiceError;
+import com.github.leofalco.cep4j.exceptions.ServiceException;
+import com.github.leofalco.cep4j.model.CepResponse;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
-import com.github.leofalco.cep4j.model.CepResponse;
 
 import java.util.Map;
 
@@ -21,12 +21,23 @@ public class PostmonResolver extends ResolverBase {
 
     @Override
     public CepResponse parseResponse(ResponseMap response) {
-        return new Json().convert(response.getMap(), PostmonResponse.class).toCepResponse();
+        Map<String, Object> map = response.getMap();
+
+        String cep = (String) map.get("cep");
+        String estado = (String) ((Map) map.get("estado_info")).get("nome");
+        String uf = (String) map.get("estado");
+        String cidade = (String) map.get("cidade");
+        String bairro = (String) map.get("bairro");
+        String logradouro = (String) map.get("logradouro");
+        String codigoIbge = (String) ((Map) map.get("cidade_info")).get("codigo_ibge");
+
+        return new CepResponse(getName(), cep, estado, uf, cidade, bairro, logradouro, codigoIbge);
+
     }
 
     @Override
-    public ServiceError parseError(ResponseMap response) {
-        return new ServiceError(response.getStatus(), response.getStatus(),response.getStatus(), getName());
+    public ServiceException parseError(ResponseMap response) {
+        return new ServiceException(getName(), response.getStatus(), "Erro", "Cep não encontrado");
     }
 
     @Override

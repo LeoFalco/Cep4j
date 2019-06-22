@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -24,15 +25,7 @@ public class Http {
     public static Response get(String uri) throws IOException {
         System.out.println("uri = " + uri);
         HttpResponse httpResponse = client.execute(new HttpGet(uri));
-
-        try (InputStream content = httpResponse.getEntity().getContent()) {
-
-            int statusCode = readStatusCode(httpResponse);
-            System.out.println("statusCode = " + statusCode);
-
-            String contentAsString = readResponse(content);
-            return new Response(statusCode, contentAsString);
-        }
+        return readResponse(httpResponse);
     }
 
     public static Response post(String uri, String body, Map<String, String> headers) throws IOException {
@@ -41,25 +34,22 @@ public class Http {
         headers.forEach(post::addHeader);
         post.setEntity(new StringEntity(body));
 
-        HttpResponse response = client.execute(post);
-        try (InputStream responseAsStream = response.getEntity().getContent()) {
-            int statusCode = readStatusCode(response);
-            System.out.println("statusCode = " + statusCode);
-            String responseAsString = readResponse(responseAsStream);
+        HttpResponse httpResponse = client.execute(post);
+        return readResponse(httpResponse);
+    }
 
-            return new Response(statusCode, responseAsString);
+    private static Response readResponse(HttpResponse httpResponse) throws IOException {
+        try (InputStream responseAsStream = httpResponse.getEntity().getContent()) {
+            try (InputStreamReader inputStreamReader = new InputStreamReader(responseAsStream, StandardCharsets.UTF_8)) {
+                try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+
+                    int statusCode = httpResponse.getStatusLine().getStatusCode();
+                    System.out.println("statusCode = " + statusCode);
+                    String responseAsString = bufferedReader.lines().collect(Collectors.joining());
+                    System.out.println("responseAsString = " + responseAsString);
+                    return new Response(statusCode, responseAsString);
+                }
+            }
         }
-
-    }
-
-    private static String readResponse(InputStream response) {
-        return new BufferedReader(new InputStreamReader(response))
-                .lines()
-                .collect(Collectors.joining());
-
-    }
-
-    public static int readStatusCode(HttpResponse response) {
-        return response.getStatusLine().getStatusCode();
     }
 }

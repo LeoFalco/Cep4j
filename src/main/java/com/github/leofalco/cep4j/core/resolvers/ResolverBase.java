@@ -1,6 +1,6 @@
 package com.github.leofalco.cep4j.core.resolvers;
 
-import com.github.leofalco.cep4j.exceptions.ServiceError;
+import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.CepResponse;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
@@ -32,10 +32,10 @@ public abstract class ResolverBase implements Resolver {
                 Objects.requireNonNull(cepResponse, "CepResponse can not return null");
 
                 return cepResponse;
-            } catch (ServiceError e) {
+            } catch (ServiceException e) {
                 throw e;
             } catch (Exception e) {
-                throw ServiceError.ofException(getName(), e);
+                throw ServiceException.ofException(getName(), e);
             }
 
         });

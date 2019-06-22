@@ -1,6 +1,6 @@
 package com.github.leofalco.cep4j.core.resolvers;
 
-import com.github.leofalco.cep4j.exceptions.ServiceError;
+import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
 import com.github.leofalco.cep4j.model.CepResponse;
@@ -16,7 +16,7 @@ public interface Resolver {
 
     CepResponse parseResponse(ResponseMap response);
 
-    ServiceError parseError(ResponseMap response);
+    ServiceException parseError(ResponseMap response);
 
     boolean isSuccess(ResponseMap response);
 

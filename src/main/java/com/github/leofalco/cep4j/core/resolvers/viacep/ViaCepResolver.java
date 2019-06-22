@@ -1,7 +1,7 @@
 package com.github.leofalco.cep4j.core.resolvers.viacep;
 
 import com.github.leofalco.cep4j.core.resolvers.ResolverBase;
-import com.github.leofalco.cep4j.exceptions.ServiceError;
+import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
 import com.github.leofalco.cep4j.Http;
@@ -26,8 +26,8 @@ public class ViaCepResolver extends ResolverBase {
     }
 
     @Override
-    public ServiceError parseError(ResponseMap response) {
-        return new ServiceError(response.getStatus(), String.valueOf(response.getMap().get("erro")), "", getName());
+    public ServiceException parseError(ResponseMap response) {
+        return new ServiceException(response.getStatus(), String.valueOf(response.getMap().get("erro")), "", getName());
     }
 
     @Override

@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Xml implements DataParser {
+public class Xml {
+    private Xml() {
+        throw new IllegalStateException("Utility Class");
+    }
     private static final XmlMapper MAPPER;
 
     static {
@@ -24,8 +27,7 @@ public class Xml implements DataParser {
         MAPPER = mapper;
     }
 
-    @Override
-    public String stringfy(Object object) {
+    public static String stringfy(Object object) {
         try {
             return MAPPER.writeValueAsString(object);
         } catch (JsonProcessingException e) {
@@ -33,8 +35,8 @@ public class Xml implements DataParser {
         }
     }
 
-    @Override
-    public <T> T parse(String json, Class<T> type) {
+
+    public static <T> T parse(String json, Class<T> type) {
         try {
             return MAPPER.readValue(json, type);
         } catch (IOException e) {
@@ -42,8 +44,8 @@ public class Xml implements DataParser {
         }
     }
 
-    @Override
-    public <T> T parse(String json, TypeReference<T> type) {
+
+    public static <T> T parse(String json, TypeReference<T> type) {
         try {
             return MAPPER.readValue(json, type);
         } catch (IOException e) {
@@ -51,23 +53,24 @@ public class Xml implements DataParser {
         }
     }
 
-    @Override
-    public Map<String, Object> toMap(String json) {
+    public static Map<String, Object> toMap(String json) {
         if (json.isEmpty()) {
             return new HashMap<>();
         }
 
-        return parse(json, new TypeReference<Map<String, Object>>() {
-        });
+        return parse(json, MapType.TYPE);
 
     }
 
-    @Override
-    public <T> T convert(Object o, Class<T> type) {
+    public static <T> T convert(Object o, Class<T> type) {
         try {
             return MAPPER.convertValue(o, type);
         } catch (IllegalArgumentException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static class MapType extends TypeReference<Map<String, Object>> {
+        static final Xml.MapType TYPE = new Xml.MapType();
     }
 }

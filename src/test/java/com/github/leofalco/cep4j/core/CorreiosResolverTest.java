@@ -7,7 +7,7 @@ import org.junit.Test;
 public class CorreiosResolverTest {
 
     @Test
-    public void test(){
+    public void testFetchGuapiacu(){
         Cep4j cep4j = new Cep4j(new CorreiosResolver());
 
         CepResponse join = cep4j.fetch("15110000").join();

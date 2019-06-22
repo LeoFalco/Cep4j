@@ -1,13 +1,15 @@
 package com.github.leofalco.cep4j.core.resolvers.postmon;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import lombok.Getter;
-import lombok.Setter;
 import com.github.leofalco.cep4j.core.resolvers.CepRenponsable;
 import com.github.leofalco.cep4j.model.CepResponse;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class PostmonResponse implements CepRenponsable {
 
     public String complemento;
@@ -23,13 +25,13 @@ public class PostmonResponse implements CepRenponsable {
 
     @Getter
     @Setter
-    public class CidadeInfo {
+    public static class CidadeInfo {
         public String codigoIbge;
     }
 
     @Getter
     @Setter
-    public class EstadoInfo {
+    public static class EstadoInfo {
         public String codigoIbge;
         public String nome;
     }
