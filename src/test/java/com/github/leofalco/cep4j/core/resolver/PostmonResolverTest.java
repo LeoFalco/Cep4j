@@ -1,5 +1,6 @@
-package com.github.leofalco.cep4j.core;
+package com.github.leofalco.cep4j.core.resolver;
 
+import com.github.leofalco.cep4j.core.Cep4j;
 import com.github.leofalco.cep4j.core.resolvers.postmon.PostmonResolver;
 import com.github.leofalco.cep4j.exceptions.ManyException;
 import com.github.leofalco.cep4j.exceptions.ServiceException;

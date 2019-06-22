@@ -1,6 +1,7 @@
-package com.github.leofalco.cep4j.core;
+package com.github.leofalco.cep4j.core.resolver;
 
 import com.github.leofalco.cep4j.Json;
+import com.github.leofalco.cep4j.core.Cep4j;
 import com.github.leofalco.cep4j.core.resolvers.viacep.ViaCepResolver;
 import org.junit.Test;
 

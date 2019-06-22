@@ -1,5 +1,6 @@
-package com.github.leofalco.cep4j.core;
+package com.github.leofalco.cep4j.core.resolver;
 
+import com.github.leofalco.cep4j.core.Cep4j;
 import com.github.leofalco.cep4j.core.resolvers.correios.CorreiosResolver;
 import com.github.leofalco.cep4j.model.CepResponse;
 import org.junit.Test;

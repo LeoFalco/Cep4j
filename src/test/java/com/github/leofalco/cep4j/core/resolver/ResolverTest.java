@@ -1,4 +1,4 @@
-package com.github.leofalco.cep4j.core;
+package com.github.leofalco.cep4j.core.resolver;
 
 public interface ResolverTest {
     void fetchGuapiacu();
