@@ -14,22 +14,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Http {
+    public static final Logger log = Logger.getLogger(Http.class.getName());
     private Http() {
     }
 
     private static final HttpClient client = HttpClientBuilder.create().build();
 
     public static Response get(String uri) throws IOException {
-        System.out.println("uri = " + uri);
+        log.info("uri: " + uri);
         HttpResponse httpResponse = client.execute(new HttpGet(uri));
         return readResponse(httpResponse);
     }
 
     public static Response post(String uri, String body, Map<String, String> headers) throws IOException {
-        System.out.println("uri = " + uri);
+        log.info("uri: " + uri);
         HttpPost post = new HttpPost(uri);
         headers.forEach(post::addHeader);
         post.setEntity(new StringEntity(body));
@@ -44,9 +46,8 @@ public class Http {
                 try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
 
                     int statusCode = httpResponse.getStatusLine().getStatusCode();
-                    System.out.println("statusCode = " + statusCode);
+                    log.info("status code: " + statusCode);
                     String responseAsString = bufferedReader.lines().collect(Collectors.joining());
-                    System.out.println("responseAsString = " + responseAsString);
                     return new Response(statusCode, responseAsString);
                 }
             }

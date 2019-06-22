@@ -66,6 +66,7 @@ public class CorreiosResolverTest {
         try {
             Cep4j cep4j = new Cep4j(new PostmonResolver());
             cep4j.fetch("15110040").join();
+            Assert.fail();
         } catch (CompletionException e) {
 
             Assert.assertEquals(ManyException.class, e.getCause().getClass());

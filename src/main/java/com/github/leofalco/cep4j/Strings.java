@@ -1,6 +1,9 @@
 package com.github.leofalco.cep4j;
 
 public class Strings {
+    private Strings() {
+        throw new IllegalStateException("Utility class");
+    }
     public static String emptyToNull(String s) {
         if (s == null || s.isEmpty())
             return null;
