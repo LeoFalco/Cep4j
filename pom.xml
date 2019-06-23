@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>false</skipTests>
 
-        <spotbugs.version>3.1.11</spotbugs.version>
+        <spotbugs.version>3.1.12</spotbugs.version>
         <maven-clean.version>3.1.0</maven-clean.version>
         <git-commit-id.version>2.2.4</git-commit-id.version>
         <maven-dependency.version>3.1.1</maven-dependency.version>
