@@ -1,15 +1,14 @@
 package com.github.leofalco.cep4j.core.resolvers.correios;
 
-import com.github.leofalco.cep4j.core.resolvers.ResolverBase;
-import com.github.leofalco.cep4j.exceptions.ServiceException;
-import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.Http;
 import com.github.leofalco.cep4j.Xml;
+import com.github.leofalco.cep4j.core.resolvers.ResolverBase;
+import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class CorreiosResolver extends ResolverBase {
 
@@ -43,11 +42,6 @@ public class CorreiosResolver extends ResolverBase {
     @Override
     public String getName() {
         return null;
-    }
-
-    @Override
-    public Map<String, Object> toMap(Response response) {
-        return Xml.toMap(response.getContent());
     }
 
     private static String requestBody(String cep) {

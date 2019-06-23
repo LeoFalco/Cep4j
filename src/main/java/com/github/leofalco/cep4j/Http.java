@@ -1,6 +1,7 @@
 package com.github.leofalco.cep4j;
 
 import com.github.leofalco.cep4j.model.Response;
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -48,7 +49,8 @@ public class Http {
                     int statusCode = httpResponse.getStatusLine().getStatusCode();
                     log.info("status code: " + statusCode);
                     String responseAsString = bufferedReader.lines().collect(Collectors.joining());
-                    return new Response(statusCode, responseAsString);
+                    Header contentType = httpResponse.getEntity().getContentType();
+                    return new Response(statusCode, contentType, responseAsString);
                 }
             }
         }

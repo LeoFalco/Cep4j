@@ -51,11 +51,6 @@ public class ViaCepResolver extends ResolverBase {
     }
 
     @Override
-    public Map<String, Object> toMap(Response response) {
-        return Json.toMap(response.getContent());
-    }
-
-    @Override
     public String getName() {
         return "ViaCep";
     }

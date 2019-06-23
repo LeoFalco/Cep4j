@@ -1,5 +1,7 @@
 package com.github.leofalco.cep4j;
 
+import java.util.Objects;
+
 public class Strings {
     private Strings() {
         throw new IllegalStateException("Utility class");
@@ -15,5 +17,21 @@ public class Strings {
             return null;
 
         return s.replaceAll("\\D", "");
+    }
+
+
+    public static boolean contains(String a, String b) {
+        if (Objects.equals(a, b))
+            return true;
+
+        return a.contains(b);
+    }
+
+
+    public static boolean containsIgnoreCase(String a, String b) {
+        if (Objects.equals(a, b))
+            return true;
+
+        return a.toLowerCase().contains(b.toLowerCase());
     }
 }

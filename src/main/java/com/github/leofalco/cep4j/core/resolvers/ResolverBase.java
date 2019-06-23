@@ -1,5 +1,8 @@
 package com.github.leofalco.cep4j.core.resolvers;
 
+import com.github.leofalco.cep4j.Json;
+import com.github.leofalco.cep4j.Strings;
+import com.github.leofalco.cep4j.Xml;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.CepResponse;
 import com.github.leofalco.cep4j.model.Response;
@@ -48,4 +51,17 @@ public abstract class ResolverBase implements Resolver {
         }
     }
 
+    @Override
+    public Map<String, Object> toMap(Response response) {
+        String contentType = response.getContentType().getValue();
+
+
+        if (Strings.containsIgnoreCase(contentType, "application/json")) {
+            return Json.toMap(response.getContent());
+        } else if (Strings.containsIgnoreCase(contentType, "text/xml")) {
+            return Xml.toMap(response.getContent());
+        } else {
+            throw new RuntimeException("Please implement a toMap(Response) for content type " + contentType);
+        }
+    }
 }

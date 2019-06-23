@@ -46,11 +46,6 @@ public class PostmonResolver extends ResolverBase {
     }
 
     @Override
-    public Map<String, Object> toMap(Response response) {
-        return Json.toMap(response.getContent());
-    }
-
-    @Override
     public String getName() {
         return "Postmon";
     }
