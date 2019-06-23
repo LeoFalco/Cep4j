@@ -1,4 +1,4 @@
-package com.github.leofalco.cep4j.core.resolvers;
+package com.github.leofalco.cep4j.core.resolvers.base;
 
 import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.Response;

@@ -62,14 +62,6 @@ public class Xml {
 
     }
 
-    public static <T> T convert(Object o, Class<T> type) {
-        try {
-            return MAPPER.convertValue(o, type);
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static class MapType extends TypeReference<Map<String, Object>> {
         static final Xml.MapType TYPE = new Xml.MapType();
     }

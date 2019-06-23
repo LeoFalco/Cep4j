@@ -57,11 +57,6 @@ public class Json {
         return parse(json, MapType.TYPE);
     }
 
-    public static <T> T convert(Object o, Class<T> type) {
-        return MAPPER.convertValue(o, type);
-    }
-
-
     private static class MapType extends TypeReference<Map<String, Object>> {
         static final MapType TYPE = new MapType();
     }

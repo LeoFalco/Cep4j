@@ -2,7 +2,7 @@ package com.github.leofalco.cep4j.core;
 
 import com.github.leofalco.cep4j.Futures;
 import com.github.leofalco.cep4j.Validator;
-import com.github.leofalco.cep4j.core.resolvers.Resolver;
+import com.github.leofalco.cep4j.core.resolvers.base.Resolver;
 import com.github.leofalco.cep4j.model.CepResponse;
 
 import java.util.Arrays;

@@ -32,6 +32,6 @@ public class Strings {
         if (Objects.equals(a, b))
             return true;
 
-        return a.toLowerCase().contains(b.toLowerCase());
+        return contains(a.toLowerCase(), b.toLowerCase());
     }
 }

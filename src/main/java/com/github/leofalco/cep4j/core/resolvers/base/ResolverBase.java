@@ -1,4 +1,4 @@
-package com.github.leofalco.cep4j.core.resolvers;
+package com.github.leofalco.cep4j.core.resolvers.base;
 
 import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.Strings;
@@ -38,7 +38,6 @@ public abstract class ResolverBase implements Resolver {
             } catch (ServiceException e) {
                 throw e;
             } catch (Exception e) {
-                e.printStackTrace();
                 throw ServiceException.ofException(getName(), e);
             }
 
@@ -57,8 +56,6 @@ public abstract class ResolverBase implements Resolver {
     @Override
     public Map<String, Object> toMap(Response response) {
         String contentType = response.getContentType().getValue();
-
-
         if (Strings.containsIgnoreCase(contentType, "application/json")) {
             return Json.toMap(response.getContent());
         } else if (Strings.containsIgnoreCase(contentType, "text/xml")) {

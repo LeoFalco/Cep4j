@@ -1,9 +1,9 @@
 package com.github.leofalco.cep4j.core;
 
 import com.github.leofalco.cep4j.Json;
-import com.github.leofalco.cep4j.core.resolvers.correios.CorreiosResolver;
-import com.github.leofalco.cep4j.core.resolvers.postmon.PostmonResolver;
-import com.github.leofalco.cep4j.core.resolvers.viacep.ViaCepResolver;
+import com.github.leofalco.cep4j.core.resolvers.impl.CorreiosResolver;
+import com.github.leofalco.cep4j.core.resolvers.impl.PostmonResolver;
+import com.github.leofalco.cep4j.core.resolvers.impl.ViaCepResolver;
 import com.github.leofalco.cep4j.model.CepResponse;
 import org.junit.Test;
 

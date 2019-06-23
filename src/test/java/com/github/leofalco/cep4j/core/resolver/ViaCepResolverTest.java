@@ -1,7 +1,7 @@
 package com.github.leofalco.cep4j.core.resolver;
 
 import com.github.leofalco.cep4j.core.Cep4j;
-import com.github.leofalco.cep4j.core.resolvers.viacep.ViaCepResolver;
+import com.github.leofalco.cep4j.core.resolvers.impl.ViaCepResolver;
 import com.github.leofalco.cep4j.exceptions.ManyException;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.CepResponse;
