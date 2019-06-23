@@ -38,6 +38,7 @@ public abstract class ResolverBase implements Resolver {
             } catch (ServiceException e) {
                 throw e;
             } catch (Exception e) {
+                e.printStackTrace();
                 throw ServiceException.ofException(getName(), e);
             }
 
@@ -47,7 +48,9 @@ public abstract class ResolverBase implements Resolver {
     @Override
     public final void handleError(ResponseMap response) {
         if (!isSuccess(response)) {
-            throw parseError(response);
+            ServiceException serviceException = parseError(response);
+            Objects.requireNonNull(serviceException, "parseError can not return null");
+            throw serviceException;
         }
     }
 

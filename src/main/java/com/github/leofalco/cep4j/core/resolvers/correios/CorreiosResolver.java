@@ -1,7 +1,6 @@
 package com.github.leofalco.cep4j.core.resolvers.correios;
 
 import com.github.leofalco.cep4j.Http;
-import com.github.leofalco.cep4j.Xml;
 import com.github.leofalco.cep4j.core.resolvers.ResolverBase;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.CepResponse;
@@ -9,6 +8,7 @@ import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CorreiosResolver extends ResolverBase {
 
@@ -26,22 +26,35 @@ public class CorreiosResolver extends ResolverBase {
 
     @Override
     public CepResponse parseResponse(ResponseMap response) {
-        return Xml.convert(response.getMap(), CorreiosResponse.class).toCepResponse();
+        System.out.println("response = " + response);
+        Map body = (Map) response.getMap().get("Body");
+        Map consultaCEPResponse = (Map) body.get("consultaCEPResponse");
+        Map retorno = (Map) consultaCEPResponse.get("return");
+
+        String cep = (String) retorno.get("cep");
+        String uf = (String) retorno.get("uf");
+        String cidade = (String) retorno.get("cidade");
+        String bairro = ((String) retorno.get("bairro"));
+        String logradouro = (String) retorno.get("end");
+        return new CepResponse(getName(), cep, null, uf, cidade, bairro, logradouro, null);
     }
 
     @Override
     public ServiceException parseError(ResponseMap response) {
-        return null;
+        return new ServiceException(getName(), response.getStatus(), "Erro", "Cep não encontrado na base dos Correios");
     }
 
     @Override
     public boolean isSuccess(ResponseMap response) {
-        return "200".equals(response.getStatus());
+        Map body = (Map) response.getMap().get("Body");
+        Map consultaCEPResponse = (Map) body.get("consultaCEPResponse");
+
+        return consultaCEPResponse != null;
     }
 
     @Override
     public String getName() {
-        return null;
+        return "Correios";
     }
 
     private static String requestBody(String cep) {

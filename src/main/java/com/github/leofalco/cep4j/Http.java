@@ -50,6 +50,7 @@ public class Http {
                     log.info("status code: " + statusCode);
                     String responseAsString = bufferedReader.lines().collect(Collectors.joining());
                     Header contentType = httpResponse.getEntity().getContentType();
+                    System.out.println("responseAsString = " + responseAsString);
                     return new Response(statusCode, contentType, responseAsString);
                 }
             }
