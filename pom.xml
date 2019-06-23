@@ -31,7 +31,6 @@
                 <version>${spotbugs.version}</version>
                 <configuration>
                     <effort>Max</effort>
-                    <threshold>Low</threshold>
                     <xmlOutput>true</xmlOutput>
                 </configuration>
                 <executions>
