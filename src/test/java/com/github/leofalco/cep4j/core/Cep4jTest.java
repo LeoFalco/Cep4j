@@ -16,7 +16,6 @@ public class Cep4jTest {
 
         CepResponse join = cep4j.fetch("15043330").join();
 
-        System.out.println("Resultado: " + new Json().stringfy(join));
     }
 
 
@@ -27,7 +26,6 @@ public class Cep4jTest {
 
         CepResponse join = cep4j.fetch("15154000").join();
 
-        System.out.println("Resultado: " + new Json().stringfy(join));
     }
 
 }

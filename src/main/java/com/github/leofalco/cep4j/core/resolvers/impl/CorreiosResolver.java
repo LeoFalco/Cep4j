@@ -26,7 +26,6 @@ public class CorreiosResolver extends ResolverBase {
 
     @Override
     public CepResponse parseResponse(ResponseMap response) {
-        System.out.println("response = " + response);
         Map body = (Map) response.getMap().get("Body");
         Map consultaCEPResponse = (Map) body.get("consultaCEPResponse");
         Map retorno = (Map) consultaCEPResponse.get("return");
@@ -48,7 +47,6 @@ public class CorreiosResolver extends ResolverBase {
     public boolean isSuccess(ResponseMap response) {
         Map body = (Map) response.getMap().get("Body");
         Map consultaCEPResponse = (Map) body.get("consultaCEPResponse");
-
         return consultaCEPResponse != null;
     }
 

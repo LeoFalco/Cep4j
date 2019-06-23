@@ -12,7 +12,6 @@ import java.util.Map;
 
 public class Xml {
     private Xml() {
-        throw new IllegalStateException("Utility Class");
     }
     private static final XmlMapper MAPPER;
 

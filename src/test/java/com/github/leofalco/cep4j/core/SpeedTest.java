@@ -16,7 +16,6 @@ public class SpeedTest {
 
         CepResponse join = cep4j.fetch("15154000").join();
 
-        System.out.println("Resultado: " + new Json().stringfy(join));
     }
 
     @Test
@@ -26,7 +25,6 @@ public class SpeedTest {
 
         CepResponse join = cep4j.fetch("15154000").join();
 
-        System.out.println("Resultado: " + new Json().stringfy(join));
     }
 
 
@@ -37,6 +35,5 @@ public class SpeedTest {
 
         CepResponse join = cep4j.fetch("15154000").join();
 
-        System.out.println("Resultado: " +  Json.stringfy(join));
     }
 }

@@ -19,20 +19,17 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Http {
-    public static final Logger log = Logger.getLogger(Http.class.getName());
     private Http() {
     }
 
     private static final HttpClient client = HttpClientBuilder.create().build();
 
     public static Response get(String uri) throws IOException {
-        log.info("uri: " + uri);
         HttpResponse httpResponse = client.execute(new HttpGet(uri));
         return readResponse(httpResponse);
     }
 
     public static Response post(String uri, String body, Map<String, String> headers) throws IOException {
-        log.info("uri: " + uri);
         HttpPost post = new HttpPost(uri);
         headers.forEach(post::addHeader);
         post.setEntity(new StringEntity(body));
@@ -45,12 +42,9 @@ public class Http {
         try (InputStream responseAsStream = httpResponse.getEntity().getContent()) {
             try (InputStreamReader inputStreamReader = new InputStreamReader(responseAsStream, StandardCharsets.UTF_8)) {
                 try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
-
                     int statusCode = httpResponse.getStatusLine().getStatusCode();
-                    log.info("status code: " + statusCode);
                     String responseAsString = bufferedReader.lines().collect(Collectors.joining());
                     Header contentType = httpResponse.getEntity().getContentType();
-                    System.out.println("responseAsString = " + responseAsString);
                     return new Response(statusCode, contentType, responseAsString);
                 }
             }

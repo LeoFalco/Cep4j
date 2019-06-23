@@ -4,22 +4,20 @@ package com.github.leofalco.cep4j.model;
 import com.github.leofalco.cep4j.Strings;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
 @ToString
 public class CepResponse {
 
-    private String resolver;
-    private String cep;
-    private String estado;
-    private String uf;
-    private String cidade;
-    private String bairro;
-    private String logradouro;
-    private String ibge;
+    private final String resolver;
+    private final String cep;
+    private final String estado;
+    private final String uf;
+    private final String cidade;
+    private final String bairro;
+    private final String logradouro;
+    private final String ibge;
 
     public CepResponse(@NonNull String resolver,
                        @NonNull String cep,

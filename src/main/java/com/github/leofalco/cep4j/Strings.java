@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Strings {
     private Strings() {
-        throw new IllegalStateException("Utility class");
     }
     public static String emptyToNull(String s) {
         if (s == null || s.isEmpty())

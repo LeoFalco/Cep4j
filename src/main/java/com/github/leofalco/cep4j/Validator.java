@@ -5,7 +5,6 @@ import lombok.NonNull;
 
 public class Validator {
     private Validator() {
-        throw new IllegalStateException("Utility class");
     }
 
 

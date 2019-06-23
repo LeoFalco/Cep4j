@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Json {
+    private Json() {
+    }
     private static final ObjectMapper MAPPER;
 
     static {

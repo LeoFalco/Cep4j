@@ -2,7 +2,9 @@ package com.github.leofalco.cep4j;
 
 import com.github.leofalco.cep4j.exceptions.ManyException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,11 +26,6 @@ public class Futures {
         BiConsumer<U, Throwable> consumer = (val, exc) -> {
             if (exc == null) {
                 future.complete(val);
-
-                completableFutures.remove(settled.incrementAndGet());
-                for (CompletableFuture<U> stage : completableFutures) {
-                    stage.cancel(true);
-                }
             } else {
                 errors.add(exc);
                 if (settled.incrementAndGet() == count) {

@@ -18,7 +18,6 @@ public class ViaCepResolverTest implements ResolverTest {
         Cep4j cep4j = new Cep4j(new ViaCepResolver());
         CepResponse cep = cep4j.fetch("15110000").join();
 
-        System.out.println("cep = " + cep);
         Assert.assertEquals("ViaCep", cep.getResolver());
         Assert.assertEquals("15110000", cep.getCep());
         Assert.assertNull(cep.getEstado());

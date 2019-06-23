@@ -11,7 +11,7 @@ public class ManyException extends RuntimeException {
     private final List<Throwable> throwableList;
 
     public ManyException(List<Throwable> throwableList) {
-        super(throwableList.stream().map(Throwable::getMessage).collect(Collectors.joining(", ")));
+        super(throwableList.stream().map(Throwable::getMessage).collect(Collectors.joining(", \n\t", "\n\t", "")));
         this.throwableList = throwableList;
     }
 }
