@@ -5,6 +5,30 @@
     <groupId>com.github.leofalco</groupId>
     <artifactId>Cep4j</artifactId>
     <version>0.1</version>
+    <description>
+        Lib para consulta de CEP para java inspirada na cep-promisse.
+    </description>
+    <url>https://github.com/LeoFalco/Cep4j</url>
+
+    <developers>
+        <developer>
+            <id>leofalco</id>
+            <name>Leonardo Jesus Falco</name>
+            <email>leonardo.falco@outlook.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/LeoFalco/Cep4j</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://raw.githubusercontent.com/LeoFalco/Cep4j/master/LICENSE</url>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +49,33 @@
     </properties>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
