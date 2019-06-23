@@ -1,7 +1,7 @@
 package com.github.leofalco.cep4j.core;
 
 import com.github.leofalco.cep4j.Futures;
-import com.github.leofalco.cep4j.Util;
+import com.github.leofalco.cep4j.Validator;
 import com.github.leofalco.cep4j.core.resolvers.Resolver;
 import com.github.leofalco.cep4j.model.CepResponse;
 
@@ -19,7 +19,7 @@ public class Cep4j implements Cep4jInterface {
     public CompletableFuture<CepResponse> fetch(String input) {
 
         return CompletableFuture
-                .supplyAsync(() -> Util.tratarInput(input))
+                .supplyAsync(() -> Validator.tratarInput(input))
                 .thenCompose(inputTratado -> {
                     List<CompletableFuture<CepResponse>> futures = resolvers
                             .stream()
