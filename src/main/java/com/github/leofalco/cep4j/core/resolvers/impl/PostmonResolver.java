@@ -3,7 +3,7 @@ package com.github.leofalco.cep4j.core.resolvers.impl;
 import com.github.leofalco.cep4j.Http;
 import com.github.leofalco.cep4j.core.resolvers.base.ResolverBase;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
-import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Cep;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
 
@@ -19,7 +19,7 @@ public class PostmonResolver extends ResolverBase {
     }
 
     @Override
-    public CepResponse parseResponse(ResponseMap response) {
+    public Cep parseResponse(ResponseMap response) {
         Map<String, Object> map = response.getMap();
 
         String cep = (String) map.get("cep");
@@ -30,7 +30,7 @@ public class PostmonResolver extends ResolverBase {
         String logradouro = (String) map.get("logradouro");
         String codigoIbge = (String) ((Map) map.get("cidade_info")).get("codigo_ibge");
 
-        return new CepResponse(getName(), cep, estado, uf, cidade, bairro, logradouro, codigoIbge);
+        return new Cep(getName(), cep, estado, uf, cidade, bairro, logradouro, codigoIbge);
 
     }
 

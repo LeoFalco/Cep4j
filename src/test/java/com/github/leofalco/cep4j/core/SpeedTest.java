@@ -1,10 +1,9 @@
 package com.github.leofalco.cep4j.core;
 
-import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.core.resolvers.impl.CorreiosResolver;
 import com.github.leofalco.cep4j.core.resolvers.impl.PostmonResolver;
 import com.github.leofalco.cep4j.core.resolvers.impl.ViaCepResolver;
-import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Cep;
 import org.junit.Test;
 
 public class SpeedTest {
@@ -14,7 +13,7 @@ public class SpeedTest {
 
         Cep4j cep4j = new Cep4j(new PostmonResolver());
 
-        CepResponse join = cep4j.fetch("15154000");
+        Cep join = cep4j.fetch("15154000");
 
     }
 
@@ -23,7 +22,7 @@ public class SpeedTest {
 
         Cep4j cep4j = new Cep4j(new ViaCepResolver());
 
-        CepResponse join = cep4j.fetch("15154000");
+        Cep join = cep4j.fetch("15154000");
 
     }
 
@@ -33,7 +32,7 @@ public class SpeedTest {
 
         Cep4j cep4j = new Cep4j(new CorreiosResolver());
 
-        CepResponse join = cep4j.fetch("15154000");
+        Cep join = cep4j.fetch("15154000");
 
     }
 }

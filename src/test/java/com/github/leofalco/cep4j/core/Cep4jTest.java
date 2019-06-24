@@ -4,7 +4,10 @@ import com.github.leofalco.cep4j.core.resolver.ResolverTest;
 import com.github.leofalco.cep4j.core.resolvers.impl.CorreiosResolver;
 import com.github.leofalco.cep4j.core.resolvers.impl.PostmonResolver;
 import com.github.leofalco.cep4j.core.resolvers.impl.ViaCepResolver;
-import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Cep;
+import com.sun.net.httpserver.HttpServer;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import com.sun.net.httpserver.HttpServer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -49,8 +52,8 @@ public class Cep4jTest implements ResolverTest {
     @Test
     @Override
     public void fetchGuapiacu() {
-        CompletableFuture<CepResponse> fetch = cep4j.fetchAsync("15110-000");
-        CepResponse cep = fetch.join();
+        CompletableFuture<Cep> fetch = cep4j.fetchAsync("15110-000");
+        Cep cep = fetch.join();
         assertThat(cep.getCep()).isEqualTo("15110000");
         assertThat(cep.getCidade()).isEqualTo("Guapiaçu");
     }

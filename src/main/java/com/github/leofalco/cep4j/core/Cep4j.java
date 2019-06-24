@@ -3,7 +3,7 @@ package com.github.leofalco.cep4j.core;
 import com.github.leofalco.cep4j.Futures;
 import com.github.leofalco.cep4j.Validator;
 import com.github.leofalco.cep4j.core.resolvers.base.Resolver;
-import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Cep;
 import lombok.NonNull;
 
 import java.util.Arrays;
@@ -20,11 +20,11 @@ public class Cep4j implements Cep4jInterface {
         this.resolvers = Arrays.asList(resolvers);
     }
 
-    public CompletableFuture<CepResponse> fetchAsync(String input) {
+    public CompletableFuture<Cep> fetchAsync(String input) {
         return CompletableFuture
                 .supplyAsync(() -> Validator.tratarInput(input))
                 .thenCompose(inputTratado -> {
-                    List<CompletableFuture<CepResponse>> futures = resolvers
+                    List<CompletableFuture<Cep>> futures = resolvers
                             .stream()
                             .map(resolver -> resolver.resolve(inputTratado))
                             .collect(Collectors.toList());
@@ -34,11 +34,11 @@ public class Cep4j implements Cep4jInterface {
 
     }
 
-    public CepResponse fetch(String cep) {
+    public Cep fetch(String cep) {
         return fetchAsync(cep).join();
     }
 
-    public void fetch(String cep, @NonNull Consumer<CepResponse> onSuccess, @NonNull Consumer<Throwable> onError) {
+    public void fetch(String cep, @NonNull Consumer<Cep> onSuccess, @NonNull Consumer<Throwable> onError) {
         fetchAsync(cep)
                 .thenAccept(onSuccess)
                 .exceptionally(throwable -> {
@@ -47,7 +47,7 @@ public class Cep4j implements Cep4jInterface {
                 });
     }
 
-    public void fetch(String cep, @NonNull Consumer<CepResponse> onSuccess) {
+    public void fetch(String cep, @NonNull Consumer<Cep> onSuccess) {
         fetchAsync(cep)
                 .thenAccept(onSuccess);
     }

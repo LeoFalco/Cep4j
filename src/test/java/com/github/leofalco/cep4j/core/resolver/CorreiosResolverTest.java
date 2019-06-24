@@ -4,7 +4,7 @@ import com.github.leofalco.cep4j.core.Cep4j;
 import com.github.leofalco.cep4j.core.resolvers.impl.CorreiosResolver;
 import com.github.leofalco.cep4j.exceptions.ManyException;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
-import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Cep;
 import org.assertj.core.api.Condition;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class CorreiosResolverTest {
     @Test
     public void fetchGuapiacu() {
         Cep4j cep4j = new Cep4j(new CorreiosResolver());
-        CepResponse cep = cep4j.fetch("15110000");
+        Cep cep = cep4j.fetch("15110000");
 
         Assert.assertEquals("Correios", cep.getResolver());
         Assert.assertEquals("15110000", cep.getCep());
@@ -34,7 +34,7 @@ public class CorreiosResolverTest {
     @Test
     public void fetchRuaAuriflama() {
         Cep4j cep4j = new Cep4j(new CorreiosResolver());
-        CepResponse cep = cep4j.fetch("15043330");
+        Cep cep = cep4j.fetch("15043330");
 
         Assert.assertEquals("Correios", cep.getResolver());
         Assert.assertEquals("15043330", cep.getCep());
@@ -51,7 +51,7 @@ public class CorreiosResolverTest {
 
         Cep4j cep4j = new Cep4j(new CorreiosResolver());
 
-        CepResponse cep = cep4j.fetch("15154000");
+        Cep cep = cep4j.fetch("15154000");
 
         Assert.assertEquals("Correios", cep.getResolver());
         Assert.assertEquals("15154000", cep.getCep());

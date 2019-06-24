@@ -3,7 +3,7 @@ package com.github.leofalco.cep4j.core.resolvers.impl;
 import com.github.leofalco.cep4j.Http;
 import com.github.leofalco.cep4j.core.resolvers.base.ResolverBase;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
-import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Cep;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
 
@@ -20,7 +20,7 @@ public class ViaCepResolver extends ResolverBase {
     }
 
     @Override
-    public CepResponse parseResponse(ResponseMap response) {
+    public Cep parseResponse(ResponseMap response) {
 
         Map map = response.getMap();
         String uf = (String) response.getMap().get("uf");
@@ -30,7 +30,7 @@ public class ViaCepResolver extends ResolverBase {
         String logradouro = (String) map.get("logradouro");
         String ibge = (String) map.get("ibge");
 
-        return new CepResponse(getName(), cep, null, uf, cidade, bairro, logradouro, ibge);
+        return new Cep(getName(), cep, null, uf, cidade, bairro, logradouro, ibge);
     }
 
     @Override

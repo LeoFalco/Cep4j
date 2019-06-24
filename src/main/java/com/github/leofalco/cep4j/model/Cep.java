@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class CepResponse {
+public class Cep {
 
     private final String resolver;
     private final String cep;
@@ -19,14 +19,14 @@ public class CepResponse {
     private final String logradouro;
     private final String ibge;
 
-    public CepResponse(@NonNull String resolver,
-                       @NonNull String cep,
-                       String estado,
-                       @NonNull String uf,
-                       @NonNull String cidade,
-                       String bairro,
-                       String logradouro,
-                       String ibge) {
+    public Cep(@NonNull String resolver,
+               @NonNull String cep,
+               String estado,
+               @NonNull String uf,
+               @NonNull String cidade,
+               String bairro,
+               String logradouro,
+               String ibge) {
         this.resolver = resolver;
         this.cep = Strings.onlyDigits(cep);
         this.estado = Strings.emptyToNull(estado);

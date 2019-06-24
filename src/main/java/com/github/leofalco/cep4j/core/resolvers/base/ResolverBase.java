@@ -4,7 +4,7 @@ import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.Strings;
 import com.github.leofalco.cep4j.Xml;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
-import com.github.leofalco.cep4j.model.CepResponse;
+import com.github.leofalco.cep4j.model.Cep;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
 
@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 public abstract class ResolverBase implements Resolver {
 
     @Override
-    public final CompletableFuture<CepResponse> resolve(String string) {
+    public final CompletableFuture<Cep> resolve(String string) {
         return CompletableFuture.supplyAsync(() -> {
 
             try {
@@ -31,10 +31,10 @@ public abstract class ResolverBase implements Resolver {
                 Objects.requireNonNull(responseMap.getMap(), "ResponseMap.map can not return null");
 
                 handleError(responseMap);
-                CepResponse cepResponse = parseResponse(responseMap);
-                Objects.requireNonNull(cepResponse, "CepResponse can not return null");
+                Cep cep = parseResponse(responseMap);
+                Objects.requireNonNull(cep, "Cep can not return null");
 
-                return cepResponse;
+                return cep;
             } catch (ServiceException e) {
                 throw e;
             } catch (Exception e) {

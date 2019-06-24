@@ -12,7 +12,6 @@ public class Response {
     private final String content;
     private final Header contentType;
 
-
     public Response(int status, Header contentType, @NonNull String content) {
         this.status = String.valueOf(status);
         this.contentType = contentType;
