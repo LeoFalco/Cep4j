@@ -14,7 +14,7 @@ public class SpeedTest {
 
         Cep4j cep4j = new Cep4j(new PostmonResolver());
 
-        CepResponse join = cep4j.fetch("15154000").join();
+        CepResponse join = cep4j.fetch("15154000");
 
     }
 
@@ -23,7 +23,7 @@ public class SpeedTest {
 
         Cep4j cep4j = new Cep4j(new ViaCepResolver());
 
-        CepResponse join = cep4j.fetch("15154000").join();
+        CepResponse join = cep4j.fetch("15154000");
 
     }
 
@@ -33,7 +33,7 @@ public class SpeedTest {
 
         Cep4j cep4j = new Cep4j(new CorreiosResolver());
 
-        CepResponse join = cep4j.fetch("15154000").join();
+        CepResponse join = cep4j.fetch("15154000");
 
     }
 }

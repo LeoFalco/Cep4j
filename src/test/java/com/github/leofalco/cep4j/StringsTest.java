@@ -3,6 +3,8 @@ package com.github.leofalco.cep4j;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class StringsTest {
 
     @Test
@@ -33,14 +35,33 @@ public class StringsTest {
 
     }
 
+
     @Test
-    public void constructor() {
-
-        try {
-            Strings.class.newInstance();
-            Assert.fail();
-        } catch (InstantiationException | IllegalAccessException ignored) {
-        }
-
+    public void contains() {
+        assertThat(Strings.contains(null, null)).isTrue();
+        assertThat(Strings.contains("", "")).isTrue();
+        assertThat(Strings.contains("abc", "")).isTrue();
+        assertThat(Strings.contains("", "abc")).isFalse();
+        assertThat(Strings.contains("efabcd", "abc")).isTrue();
+        assertThat(Strings.contains("efaBcd.9#", "abc")).isFalse();
+        assertThat(Strings.contains("efabCd", "AbC")).isFalse();
+        assertThat(Strings.contains("efAbcd", "ABC")).isFalse();
+        assertThat(Strings.contains("efabc##d", "abc##")).isTrue();
+        assertThat(Strings.contains("efab.cd", "ab.C")).isFalse();
     }
+
+
+    @Test
+    public void containsIgnoreCase() {
+        assertThat(Strings.containsIgnoreCase(null, null)).isTrue();
+        assertThat(Strings.containsIgnoreCase("", "")).isTrue();
+        assertThat(Strings.containsIgnoreCase("abc", "")).isTrue();
+        assertThat(Strings.containsIgnoreCase("", "abc")).isFalse();
+        assertThat(Strings.containsIgnoreCase("efaBcd.9#", "abc")).isTrue();
+        assertThat(Strings.containsIgnoreCase("efabCd", "AbC")).isTrue();
+        assertThat(Strings.containsIgnoreCase("efAbcd", "ABC")).isTrue();
+        assertThat(Strings.containsIgnoreCase("efabc##d", "abc##")).isTrue();
+        assertThat(Strings.containsIgnoreCase("efab.cd", "ab.C")).isTrue();
+    }
+
 }

@@ -11,6 +11,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
 public class Futures {
+    private Futures() {
+    }
 
     public static <U> CompletableFuture<U> firstCompleted(List<CompletableFuture<U>> input) {
 
@@ -26,6 +28,10 @@ public class Futures {
         BiConsumer<U, Throwable> consumer = (val, exc) -> {
             if (exc == null) {
                 future.complete(val);
+                completableFutures.remove(settled.incrementAndGet());
+                for (CompletableFuture<U> stage : completableFutures) {
+                    stage.cancel(true);
+                }
             } else {
                 errors.add(exc);
                 if (settled.incrementAndGet() == count) {

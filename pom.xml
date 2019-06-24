@@ -58,6 +58,7 @@
         <lombok.version>1.18.8</lombok.version>
         <httpclient.version>4.5.9</httpclient.version>
         <junit.version>4.12</junit.version>
+        <assertj.version>3.11.1</assertj.version>
     </properties>
     <build>
         <plugins>
@@ -83,6 +84,33 @@
                         <phase>verify</phase>
                         <goals>
                             <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.mock-server</groupId>
+                <artifactId>mockserver-maven-plugin</artifactId>
+                <version>5.6.0</version>
+                <configuration>
+                    <serverPort>1080</serverPort>
+                    <logLevel>DEBUG</logLevel>
+                    <initializationClass>com.github.leofalco.cep4j.mock.MockServerInitializer</initializationClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>process-test-classes</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>stop</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -225,7 +253,13 @@
       <dependency>
           <groupId>org.assertj</groupId>
           <artifactId>assertj-core</artifactId>
-          <version>3.11.1</version>
+          <version>${assertj.version}</version>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.mock-server</groupId>
+          <artifactId>mockserver-netty</artifactId>
+          <version>5.6.0</version>
           <scope>test</scope>
       </dependency>
   </dependencies>

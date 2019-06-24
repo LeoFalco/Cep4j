@@ -16,7 +16,7 @@ public class ViaCepResolverTest implements ResolverTest {
     @Test
     public void fetchGuapiacu() {
         Cep4j cep4j = new Cep4j(new ViaCepResolver());
-        CepResponse cep = cep4j.fetch("15110000").join();
+        CepResponse cep = cep4j.fetch("15110000");
 
         Assert.assertEquals("ViaCep", cep.getResolver());
         Assert.assertEquals("15110000", cep.getCep());
@@ -31,7 +31,7 @@ public class ViaCepResolverTest implements ResolverTest {
     @Test
     public void fetchRuaAuriflama() {
         Cep4j cep4j = new Cep4j(new ViaCepResolver());
-        CepResponse cep = cep4j.fetch("15043330").join();
+        CepResponse cep = cep4j.fetch("15043330");
 
         Assert.assertEquals("ViaCep", cep.getResolver());
         Assert.assertEquals("15043330", cep.getCep());
@@ -48,7 +48,7 @@ public class ViaCepResolverTest implements ResolverTest {
 
         Cep4j cep4j = new Cep4j(new ViaCepResolver());
 
-        CepResponse cep = cep4j.fetch("15154000").join();
+        CepResponse cep = cep4j.fetch("15154000");
 
         Assert.assertEquals("ViaCep", cep.getResolver());
         Assert.assertEquals("15154000", cep.getCep());
@@ -65,7 +65,7 @@ public class ViaCepResolverTest implements ResolverTest {
     public void failWenCepNotExistsWithCorrectMessages() {
         try {
             Cep4j cep4j = new Cep4j(new ViaCepResolver());
-            cep4j.fetch("15110040").join();
+            cep4j.fetch("15110040");
             Assert.fail();
         } catch (CompletionException e) {
 
