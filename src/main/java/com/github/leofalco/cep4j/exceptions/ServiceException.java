@@ -9,18 +9,18 @@ public class ServiceException extends RuntimeException {
 
     private final String serviceName;
     private final String code;
-    private final String message;
+    private final String mensagem;
     private final String description;
 
-    public ServiceException(String serviceName, String code, String message, String description) {
-        this(serviceName, code, message, description, null);
+    public ServiceException(String serviceName, String code, String mensagem, String description) {
+        this(serviceName, code, mensagem, description, null);
     }
 
-    public ServiceException(String serviceName, String code, String message, String description, Exception cause) {
-        super(String.join(", ", "\n\t", serviceName, code, message, description), cause);
+    public ServiceException(String serviceName, String code, String mensagem, String description, Exception cause) {
+        super(String.join( "","service=", serviceName, " code=", code, " mensagem=", mensagem, " description=", description), cause);
         this.serviceName = serviceName;
         this.code = code;
-        this.message = message;
+        this.mensagem = mensagem;
         this.description = description;
 
     }

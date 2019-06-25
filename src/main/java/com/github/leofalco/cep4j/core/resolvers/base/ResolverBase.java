@@ -17,7 +17,6 @@ public abstract class ResolverBase implements Resolver {
     @Override
     public final CompletableFuture<Cep> resolve(String string) {
         return CompletableFuture.supplyAsync(() -> {
-
             try {
                 Response response = fetch(string);
                 Objects.requireNonNull(response, "Response can not be null");
@@ -40,7 +39,6 @@ public abstract class ResolverBase implements Resolver {
             } catch (Exception e) {
                 throw ServiceException.ofException(getName(), e);
             }
-
         });
     }
 

@@ -83,7 +83,7 @@ public class PostmonResolverTest implements ResolverTest {
             ServiceException serviceException = (ServiceException) cause;
             Assert.assertEquals("Postmon", serviceException.getServiceName());
             Assert.assertEquals("404", serviceException.getCode());
-            Assert.assertEquals("Erro", serviceException.getMessage());
+            Assert.assertEquals("Erro", serviceException.getMensagem());
             Assert.assertEquals("Cep não encontrado na base do Postmon", serviceException.getDescription());
         }
     }

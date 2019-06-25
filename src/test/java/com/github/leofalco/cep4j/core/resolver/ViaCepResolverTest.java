@@ -83,7 +83,7 @@ public class ViaCepResolverTest implements ResolverTest {
             ServiceException serviceException = (ServiceException) cause;
             Assert.assertEquals("ViaCep", serviceException.getServiceName());
             Assert.assertEquals("200", serviceException.getCode());
-            Assert.assertEquals("Erro", serviceException.getMessage());
+            Assert.assertEquals("Erro", serviceException.getMensagem());
             Assert.assertEquals("Cep não encontrado na base do ViaCep", serviceException.getDescription());
         }
     }

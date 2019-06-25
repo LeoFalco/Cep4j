@@ -89,7 +89,7 @@ public class CorreiosResolverTest {
             assertThat(serviceException.getServiceName()).isEqualTo("Correios");
             Condition<String> inCodes = new Condition<>(s -> "200".equals(s) || "500".equals(s), "Allowed codes");
             assertThat(serviceException.getCode()).is(inCodes);
-            assertThat(serviceException.getMessage()).isEqualTo("Erro");
+            assertThat(serviceException.getMensagem()).isEqualTo("Erro");
             assertThat(serviceException.getDescription()).isEqualTo("Cep não encontrado na base dos Correios");
         }
     }

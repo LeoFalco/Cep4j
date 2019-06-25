@@ -1,6 +1,7 @@
 package com.github.leofalco.cep4j.core;
 
 import com.github.leofalco.cep4j.Validator;
+import com.github.leofalco.cep4j.exceptions.ManyException;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,12 +15,14 @@ public class ValidatorTest {
         try {
             Validator.tratarInput("1111");
             Assert.fail();
-        } catch (ServiceException e) {
+        } catch (ManyException e) {
 
-            assertThat(e.getServiceName()).isEqualTo("Validator");
-            assertThat(e.getCode()).isEqualTo("invalid_input");
-            assertThat(e.getMessage()).isEqualTo("Cep inválido");
-            assertThat(e.getDescription()).isEqualTo("Cep deve conter 8 caracteres.");
+            ServiceException cause = (ServiceException) e.getThrowableList().get(0);
+            cause.printStackTrace();
+            assertThat(cause.getServiceName()).isEqualTo("Validator");
+            assertThat(cause.getCode()).isEqualTo("invalid_input");
+            assertThat(cause.getMensagem()).isEqualTo("Cep inválido");
+            assertThat(cause.getDescription()).isEqualTo("Cep deve conter 8 caracteres.");
         }
     }
 
