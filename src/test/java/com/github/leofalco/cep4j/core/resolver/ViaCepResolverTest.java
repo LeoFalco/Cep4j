@@ -1,6 +1,6 @@
 package com.github.leofalco.cep4j.core.resolver;
 
-import com.github.leofalco.cep4j.core.Cep4j;
+import com.github.leofalco.cep4j.core.Cep4jImpl;
 import com.github.leofalco.cep4j.core.resolvers.impl.ViaCepResolver;
 import com.github.leofalco.cep4j.exceptions.ManyException;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
@@ -15,7 +15,7 @@ public class ViaCepResolverTest implements ResolverTest {
 
     @Test
     public void fetchGuapiacu() {
-        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new ViaCepResolver());
         Cep cep = cep4j.fetch("15110000");
 
         Assert.assertEquals("ViaCep", cep.getResolver());
@@ -30,7 +30,7 @@ public class ViaCepResolverTest implements ResolverTest {
 
     @Test
     public void fetchRuaAuriflama() {
-        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new ViaCepResolver());
         Cep cep = cep4j.fetch("15043330");
 
         Assert.assertEquals("ViaCep", cep.getResolver());
@@ -46,7 +46,7 @@ public class ViaCepResolverTest implements ResolverTest {
     @Test
     public void fetchEngenheiroBalduino() {
 
-        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new ViaCepResolver());
 
         Cep cep = cep4j.fetch("15154000");
 
@@ -64,7 +64,7 @@ public class ViaCepResolverTest implements ResolverTest {
     @Test
     public void failWenCepNotExistsWithCorrectMessages() {
         try {
-            Cep4j cep4j = new Cep4j(new ViaCepResolver());
+            Cep4jImpl cep4j = new Cep4jImpl(new ViaCepResolver());
             cep4j.fetch("15110040");
             Assert.fail();
         } catch (CompletionException e) {

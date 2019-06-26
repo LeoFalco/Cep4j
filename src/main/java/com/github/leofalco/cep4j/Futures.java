@@ -24,8 +24,6 @@ public class Futures {
         final CompletableFuture<U> future = new CompletableFuture<>();
         final List<Throwable> errors = new ArrayList<>();
 
-        Iterator<CompletableFuture<U>> iterator = input.iterator();
-
         for (CompletionStage<U> item : input) {
             item.whenComplete((val, exc) -> {
                 if (exc == null) {

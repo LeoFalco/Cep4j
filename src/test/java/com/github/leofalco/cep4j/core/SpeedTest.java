@@ -11,7 +11,7 @@ public class SpeedTest {
     @Test
     public void fetchPostMon() {
 
-        Cep4j cep4j = new Cep4j(new PostmonResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new PostmonResolver());
 
         Cep join = cep4j.fetch("15154000");
 
@@ -20,7 +20,7 @@ public class SpeedTest {
     @Test
     public void fetchViaCep() {
 
-        Cep4j cep4j = new Cep4j(new ViaCepResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new ViaCepResolver());
 
         Cep join = cep4j.fetch("15154000");
 
@@ -30,7 +30,7 @@ public class SpeedTest {
     @Test
     public void fetchCorreios() {
 
-        Cep4j cep4j = new Cep4j(new CorreiosResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new CorreiosResolver());
 
         Cep join = cep4j.fetch("15154000");
 

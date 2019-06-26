@@ -1,6 +1,6 @@
 package com.github.leofalco.cep4j.core.resolver;
 
-import com.github.leofalco.cep4j.core.Cep4j;
+import com.github.leofalco.cep4j.core.Cep4jImpl;
 import com.github.leofalco.cep4j.core.resolvers.impl.CorreiosResolver;
 import com.github.leofalco.cep4j.exceptions.ManyException;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
@@ -18,7 +18,7 @@ public class CorreiosResolverTest {
 
     @Test
     public void fetchGuapiacu() {
-        Cep4j cep4j = new Cep4j(new CorreiosResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new CorreiosResolver());
         Cep cep = cep4j.fetch("15110000");
 
         Assert.assertEquals("Correios", cep.getResolver());
@@ -33,7 +33,7 @@ public class CorreiosResolverTest {
 
     @Test
     public void fetchRuaAuriflama() {
-        Cep4j cep4j = new Cep4j(new CorreiosResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new CorreiosResolver());
         Cep cep = cep4j.fetch("15043330");
 
         Assert.assertEquals("Correios", cep.getResolver());
@@ -49,7 +49,7 @@ public class CorreiosResolverTest {
     @Test
     public void fetchEngenheiroBalduino() {
 
-        Cep4j cep4j = new Cep4j(new CorreiosResolver());
+        Cep4jImpl cep4j = new Cep4jImpl(new CorreiosResolver());
 
         Cep cep = cep4j.fetch("15154000");
 
@@ -67,7 +67,7 @@ public class CorreiosResolverTest {
     @Test
     public void failWenCepNotExistsWithCorrectMessages() {
         try {
-            Cep4j cep4j = new Cep4j(new CorreiosResolver());
+            Cep4jImpl cep4j = new Cep4jImpl(new CorreiosResolver());
             cep4j.fetch("15110040");
             Assert.fail();
         } catch (CompletionException e) {

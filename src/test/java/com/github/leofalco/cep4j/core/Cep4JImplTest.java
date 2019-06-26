@@ -11,9 +11,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import com.sun.net.httpserver.HttpServer;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockserver.integration.ClientAndServer;
 
@@ -24,14 +21,14 @@ import java.util.concurrent.CompletionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Cep4jTest implements ResolverTest {
+public class Cep4JImplTest implements ResolverTest {
 
-    private static Cep4j cep4j;
+    private static Cep4jImpl cep4j;
     private static ClientAndServer clientAndServer;
 
     @BeforeClass
     public static void setup() throws IOException {
-        cep4j = new Cep4j(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
+        cep4j = new Cep4jImpl(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
 
     }
 
