@@ -18,7 +18,6 @@ public class ValidatorTest {
         } catch (ManyException e) {
 
             ServiceException cause = (ServiceException) e.getThrowableList().get(0);
-            cause.printStackTrace();
             assertThat(cause.getServiceName()).isEqualTo("Validator");
             assertThat(cause.getCode()).isEqualTo("invalid_input");
             assertThat(cause.getMensagem()).isEqualTo("Cep inválido");

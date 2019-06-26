@@ -25,8 +25,8 @@ public class ServiceException extends RuntimeException {
 
     }
 
-    public static ServiceException ofException(String serviceName, Exception cause) {
-        throw new ServiceException(serviceName,
+    public ServiceException(String serviceName, Exception cause) {
+        this(serviceName,
                 elvis(() -> cause.getClass().getSimpleName()),
                 elvis(cause::getMessage),
                 elvis(() -> cause.getCause().getMessage()),

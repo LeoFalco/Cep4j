@@ -37,7 +37,7 @@ public abstract class ResolverBase implements Resolver {
             } catch (ServiceException e) {
                 throw e;
             } catch (Exception e) {
-                throw ServiceException.ofException(getName(), e);
+                throw new ServiceException(getName(), e);
             }
         });
     }

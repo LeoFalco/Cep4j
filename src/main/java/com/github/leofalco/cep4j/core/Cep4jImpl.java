@@ -23,7 +23,7 @@ public class Cep4jImpl implements Cep4j {
     public CompletableFuture<Cep> fetchAsync(String input) {
         return CompletableFuture
                 .supplyAsync(() -> Validator.tratarInput(input))
-                .thenCompose(inputTratado -> {
+                .thenComposeAsync(inputTratado -> {
                     List<CompletableFuture<Cep>> futures = resolvers
                             .stream()
                             .map(resolver -> resolver.resolve(inputTratado))

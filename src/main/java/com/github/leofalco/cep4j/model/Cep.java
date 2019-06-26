@@ -27,11 +27,11 @@ public class Cep {
                String bairro,
                String logradouro,
                String ibge) {
-        this.resolver = resolver;
-        this.cep = Strings.onlyDigits(cep);
+        this.resolver = Strings.notEmpty(resolver);
+        this.cep = Strings.onlyDigitsAndNotEmpty(cep);
         this.estado = Strings.emptyToNull(estado);
-        this.uf = uf;
-        this.cidade = cidade;
+        this.uf = Strings.notEmpty(uf);
+        this.cidade = Strings.notEmpty(cidade);
         this.bairro = Strings.emptyToNull(bairro);
         this.logradouro = Strings.emptyToNull(logradouro);
         this.ibge = Strings.emptyToNull(ibge);

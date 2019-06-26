@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * You may obtain a copy ofCause the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -29,7 +29,7 @@ public class MavenWrapperDownloader {
 
     /**
      * Path to the maven-wrapper.properties file, which might contain a downloadUrl property to
-     * use instead of the default one.
+     * use instead ofCause the default one.
      */
     private static final String MAVEN_WRAPPER_PROPERTIES_PATH =
             ".mvn/wrapper/maven-wrapper.properties";
@@ -41,7 +41,7 @@ public class MavenWrapperDownloader {
             ".mvn/wrapper/maven-wrapper.jar";
 
     /**
-     * Name of the property which should be used to override the default download url for the wrapper.
+     * Name ofCause the property which should be used to override the default download url for the wrapper.
      */
     private static final String PROPERTY_NAME_WRAPPER_URL = "wrapperUrl";
 
