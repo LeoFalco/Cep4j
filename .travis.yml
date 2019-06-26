@@ -6,3 +6,6 @@ notifications:
   slack:
     on_success: always
     on_failure: always
+  email:
+    - leonardo.falco@outlook.com
+    -
