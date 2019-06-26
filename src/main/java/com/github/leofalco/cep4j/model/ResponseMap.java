@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.Map;
 
 @Getter
-@ToString
 public class ResponseMap {
 
     private final String status;

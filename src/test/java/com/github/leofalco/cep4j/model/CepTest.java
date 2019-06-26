@@ -51,4 +51,12 @@ public class CepTest {
         assertThat(cep.getIbge()).isNull();
     }
 
+    @Test
+    public void toStringTest() {
+        Cep cep = new Cep("a", "15110000", "", "a", "a", "", "", "");
+        String s = cep.toString();
+    }
+
+
+
 }

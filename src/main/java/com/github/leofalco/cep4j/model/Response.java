@@ -6,7 +6,6 @@ import lombok.ToString;
 import org.apache.http.Header;
 
 @Getter
-@ToString
 public class Response {
     private final String status;
     private final String content;
