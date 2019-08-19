@@ -4,7 +4,7 @@
 
     <groupId>com.github.leofalco</groupId>
     <artifactId>Cep4j</artifactId>
-    <version>0.1</version>
+    <version>0.1-SNAPSHOT</version>
     <name>Cep4j</name>
     <description>Lib para consulta de CEP para java inspirada na cep-promisse.</description>
     <url>https://github.com/LeoFalco/Cep4j</url>
@@ -20,6 +20,7 @@
     <scm>
         <url>https://github.com/LeoFalco/Cep4j</url>
         <tag>HEAD</tag>
+        <developerConnection>scm:git:https://github.com/LeoFalco/Cep4j</developerConnection>
     </scm>
 
     <licenses>
@@ -29,16 +30,6 @@
         </license>
     </licenses>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,6 +49,8 @@
         <httpclient.version>4.5.9</httpclient.version>
         <junit.version>4.12</junit.version>
         <assertj.version>3.11.1</assertj.version>
+
+        <connectionUrl>https://github.com/LeoFalco/Cep4j</connectionUrl>
     </properties>
     <build>
         <plugins>
@@ -164,6 +157,15 @@
                     <dateFormat>dd_MM_yyyy_HH_mm_ss</dateFormat>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>${project.basedir}/src/main/resources/git-info.properties</generateGitPropertiesFilename>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
 
