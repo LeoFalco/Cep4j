@@ -24,3 +24,4 @@ Cep4j.iml
 
 # git info
 /src/main/resources/git-info.properties
+/pom.xml.releaseBackup

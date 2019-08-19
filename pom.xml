@@ -17,9 +17,10 @@
     </developers>
 
     <scm>
-        <url>https://github.com/LeoFalco/Cep4j</url>
         <tag>HEAD</tag>
-        <developerConnection>scm:git:https://github.com/LeoFalco/Cep4j</developerConnection>
+        <url>https://github.com/LeoFalco/Cep4j</url>
+        <developerConnection>scm:git:https://github.com/LeoFalco/Cep4j.git</developerConnection>
+        <connection>scm:git:https://github.com/LeoFalco/Cep4j.git</connection>
     </scm>
 
     <licenses>
