@@ -30,7 +30,6 @@
         </license>
     </licenses>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>false</skipTests>
@@ -147,7 +146,14 @@
                 <version>${git-commit-id.version}</version>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <id>validate-the-git-infos</id>
+                        <goals>
+                            <goal>validateRevision</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                    <execution>
+                        <phase>post-clean</phase>
                         <goals>
                             <goal>revision</goal>
                         </goals>
@@ -157,6 +163,24 @@
                     <dateFormat>dd_MM_yyyy_HH_mm_ss</dateFormat>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>${project.basedir}/src/main/resources/git-info.properties</generateGitPropertiesFilename>
+
+                    <validationProperties>
+                        <!-- verify that the current repository is not dirty -->
+                        <validationProperty>
+                            <name>validating git dirty</name>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <value>${git.dirty}</value>
+                            <shouldMatchTo>false</shouldMatchTo>
+                        </validationProperty>
+
+                        <validationProperty>
+                            <name>validating git dirty</name>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <value>${git.closest.tag.commit.count}</value>
+                            <shouldMatchTo>0</shouldMatchTo>
+                        </validationProperty>
+
+                    </validationProperties>
                 </configuration>
             </plugin>
 
