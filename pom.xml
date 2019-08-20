@@ -3,7 +3,7 @@
 
     <groupId>com.github.leofalco</groupId>
     <artifactId>Cep4j</artifactId>
-    <version>0.1.7</version>
+    <version>0.1.8-SNAPSHOT</version>
     <name>Cep4j</name>
     <description>Lib para consulta de CEP para java inspirada na cep-promisse.</description>
     <url>https://github.com/LeoFalco/Cep4j</url>
@@ -17,7 +17,7 @@
     </developers>
 
     <scm>
-        <tag>v0.1.7</tag>
+        <tag>v0.1.6</tag>
         <url>https://github.com/LeoFalco/Cep4j</url>
         <developerConnection>scm:git:git@github.com:LeoFalco/Cep4j.git</developerConnection>
         <connection>scm:git:git@github.com:LeoFalco/Cep4j.git</connection>
