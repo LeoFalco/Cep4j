@@ -17,7 +17,7 @@
     </developers>
 
     <scm>
-        <tag>v0.1.4</tag>
+        <tag>v0.1.6</tag>
         <url>https://github.com/LeoFalco/Cep4j</url>
         <developerConnection>scm:git:git@github.com:LeoFalco/Cep4j.git</developerConnection>
         <connection>scm:git:git@github.com:LeoFalco/Cep4j.git</connection>
@@ -163,7 +163,6 @@
                     <dateFormat>dd_MM_yyyy_HH_mm_ss</dateFormat>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>${project.basedir}/src/main/resources/git-info.properties</generateGitPropertiesFilename>
-
                     <validationProperties>
                         <!-- verify that the current repository is not dirty -->
                         <validationProperty>
@@ -179,7 +178,6 @@
                             <value>${git.closest.tag.commit.count}</value>
                             <shouldMatchTo>0</shouldMatchTo>
                         </validationProperty>
-
                     </validationProperties>
                 </configuration>
             </plugin>
