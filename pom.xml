@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.leofalco</groupId>
     <artifactId>Cep4j</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1.6-SNAPSHOT</version>
     <name>Cep4j</name>
     <description>Lib para consulta de CEP para java inspirada na cep-promisse.</description>
     <url>https://github.com/LeoFalco/Cep4j</url>
@@ -18,9 +17,10 @@
     </developers>
 
     <scm>
+        <tag>v0.1.6</tag>
         <url>https://github.com/LeoFalco/Cep4j</url>
-        <tag>HEAD</tag>
-        <developerConnection>scm:git:https://github.com/LeoFalco/Cep4j</developerConnection>
+        <developerConnection>scm:git:git@github.com:LeoFalco/Cep4j.git</developerConnection>
+        <connection>scm:git:git@github.com:LeoFalco/Cep4j.git</connection>
     </scm>
 
     <licenses>
@@ -29,7 +29,6 @@
             <url>https://raw.githubusercontent.com/LeoFalco/Cep4j/master/LICENSE</url>
         </license>
     </licenses>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -147,7 +146,14 @@
                 <version>${git-commit-id.version}</version>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <id>validate-the-git-infos</id>
+                        <goals>
+                            <goal>validateRevision</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                    <execution>
+                        <phase>post-clean</phase>
                         <goals>
                             <goal>revision</goal>
                         </goals>
@@ -157,6 +163,22 @@
                     <dateFormat>dd_MM_yyyy_HH_mm_ss</dateFormat>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>${project.basedir}/src/main/resources/git-info.properties</generateGitPropertiesFilename>
+                    <validationProperties>
+                        <!-- verify that the current repository is not dirty -->
+                        <validationProperty>
+                            <name>validating git dirty</name>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <value>${git.dirty}</value>
+                            <shouldMatchTo>false</shouldMatchTo>
+                        </validationProperty>
+
+                        <validationProperty>
+                            <name>validating git dirty</name>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <value>${git.closest.tag.commit.count}</value>
+                            <shouldMatchTo>0</shouldMatchTo>
+                        </validationProperty>
+                    </validationProperties>
                 </configuration>
             </plugin>
 
