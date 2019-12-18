@@ -1,5 +1,6 @@
 language: java
 jdk:
+  - openjdk9
   - openjdk8
 
 notifications:
@@ -8,3 +9,7 @@ notifications:
     on_failure: always
   email:
     - leonardo.falco@outlook.com
+
+cache:
+  directories:
+    - $HOME/.m2
