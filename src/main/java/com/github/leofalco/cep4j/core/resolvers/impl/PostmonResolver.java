@@ -7,8 +7,6 @@ import com.github.leofalco.cep4j.model.Cep;
 import com.github.leofalco.cep4j.model.Response;
 import com.github.leofalco.cep4j.model.ResponseMap;
 
-import java.util.Map;
-
 public class PostmonResolver extends ResolverBase {
 
     private static final String BASE_URL = "http://api.postmon.com.br/v1/cep/";
@@ -20,17 +18,14 @@ public class PostmonResolver extends ResolverBase {
 
     @Override
     public Cep parseResponse(ResponseMap response) {
-        Map<String, Object> map = response.getMap();
-
-        String cep = (String) map.get("cep");
-        String estado = (String) ((Map) map.get("estado_info")).get("nome");
-        String uf = (String) map.get("estado");
-        String cidade = (String) map.get("cidade");
-        String bairro = (String) map.get("bairro");
-        String logradouro = (String) map.get("logradouro");
-        String codigoIbge = (String) ((Map) map.get("cidade_info")).get("codigo_ibge");
-
-        return new Cep(getName(), cep, estado, uf, cidade, bairro, logradouro, codigoIbge);
+        return new Cep(getName(),
+                response.get("cep"),
+                response.get("estado_info.nome"),
+                response.get("estado"),
+                response.get("cidade"),
+                response.get("bairro"),
+                response.get("logradouro"),
+                response.get("cidade_info.codigo_ibge"));
 
     }
 

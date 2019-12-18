@@ -1,6 +1,7 @@
 package com.github.leofalco.cep4j.core.resolvers.impl;
 
 import com.github.leofalco.cep4j.Http;
+import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.core.resolvers.base.ResolverBase;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.Cep;
@@ -26,16 +27,15 @@ public class CorreiosResolver extends ResolverBase {
 
     @Override
     public Cep parseResponse(ResponseMap response) {
-        Map body = (Map) response.getMap().get("Body");
-        Map consultaCEPResponse = (Map) body.get("consultaCEPResponse");
-        Map retorno = (Map) consultaCEPResponse.get("return");
-
-        String cep = (String) retorno.get("cep");
-        String uf = (String) retorno.get("uf");
-        String cidade = (String) retorno.get("cidade");
-        String bairro = ((String) retorno.get("bairro"));
-        String logradouro = (String) retorno.get("end");
-        return new Cep(getName(), cep, null, uf, cidade, bairro, logradouro, null);
+        Map<String, String> retorno = response.get("Body.consultaCEPResponse.return");
+        return new Cep(getName(),
+                retorno.get("cep"),
+                null,
+                retorno.get("uf"),
+                retorno.get("cidade"),
+                retorno.get("bairro"),
+                retorno.get("end"),
+                null);
     }
 
     @Override
@@ -45,9 +45,7 @@ public class CorreiosResolver extends ResolverBase {
 
     @Override
     public boolean isSuccess(ResponseMap response) {
-        Map body = (Map) response.getMap().get("Body");
-        Map consultaCEPResponse = (Map) body.get("consultaCEPResponse");
-        return consultaCEPResponse != null;
+        return response.get("Body.consultaCEPResponse") != null;
     }
 
     @Override
@@ -56,16 +54,11 @@ public class CorreiosResolver extends ResolverBase {
     }
 
     private static String requestBody(String cep) {
-        return "<?xml version=\"1.0\"?> \n" +
-                "<soapenv:Envelope \n" +
-                "        xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \n" +
-                "        xmlns:cli=\"http://cliente.bean.master.sigep.bsb.correios.com.br/\"> \n" +
-                "    <soapenv:Header/> \n" +
-                "    <soapenv:Body> \n" +
-                "        <cli:consultaCEP> \n" +
-                "            <cep>" + cep + "</cep> \n" +
-                "        </cli:consultaCEP> \n" +
-                "    </soapenv:Body> \n" +
-                "</soapenv:Envelope>".replaceAll("\\s", "");
+        return "<?xml version=\"1.0\"?> \n" + "<soapenv:Envelope \n"
+                + "        xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \n"
+                + "        xmlns:cli=\"http://cliente.bean.master.sigep.bsb.correios.com.br/\"> \n"
+                + "    <soapenv:Header/> \n" + "    <soapenv:Body> \n" + "        <cli:consultaCEP> \n"
+                + "            <cep>" + cep + "</cep> \n" + "        </cli:consultaCEP> \n" + "    </soapenv:Body> \n"
+                + "</soapenv:Envelope>".replaceAll("\\s", "");
     }
 }
