@@ -27,7 +27,6 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 public class Cep4JImplTest implements ResolverTest {
 
     private static Cep4jImpl cep4j;
-    private static ClientAndServer clientAndServer;
 
     @BeforeClass
     public static void setup() throws IOException {
@@ -54,8 +53,6 @@ public class Cep4JImplTest implements ResolverTest {
 
             assertThat(validationExeception).isInstanceOf(ServiceException.class);
             ServiceException serviceException = (ServiceException) validationExeception;
-
-            e.printStackTrace();
             assertThat(serviceException.getServiceName()).isEqualTo("Validator");
             assertThat(serviceException.getCode()).isEqualTo("invalid_input");
             assertThat(serviceException.getMensagem()).isEqualTo("Cep inválido");
@@ -120,7 +117,6 @@ public class Cep4JImplTest implements ResolverTest {
         AtomicBoolean completed = new AtomicBoolean(false);
         cep4j.fetch("15110-000", cep -> {
             assertThat(cep.getCidade()).isEqualTo("Guapiaçu");
-            System.out.println("cep = " + Json.stringfy(cep));
             completed.set(true);
         });
 

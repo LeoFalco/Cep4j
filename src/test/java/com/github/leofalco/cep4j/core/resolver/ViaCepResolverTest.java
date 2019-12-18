@@ -54,8 +54,8 @@ public class ViaCepResolverTest implements ResolverTest {
         Assert.assertEquals("15154000", cep.getCep());
         Assert.assertNull(cep.getEstado());
         Assert.assertEquals("SP", cep.getUf());
-        Assert.assertEquals("Engenheiro Balduíno (Monte Aprazível)", cep.getCidade());
-        Assert.assertNull(cep.getBairro());
+        Assert.assertEquals("Monte Aprazível", cep.getCidade());
+        Assert.assertEquals("Engenheiro Balduíno", cep.getBairro());
         Assert.assertNull(cep.getLogradouro());
         Assert.assertEquals("3531407", cep.getIbge());
     }
