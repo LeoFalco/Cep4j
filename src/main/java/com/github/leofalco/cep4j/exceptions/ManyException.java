@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 @Getter
 public class ManyException extends RuntimeException {
 
+    private static final long serialVersionUID = -6585506542680457489L;
+
     private final List<Throwable> throwableList;
 
     public ManyException(List<Throwable> throwableList) {
@@ -18,7 +20,6 @@ public class ManyException extends RuntimeException {
         }
         this.throwableList = throwableList;
     }
-
 
     public ManyException(Throwable cause) {
         this(Collections.singletonList(cause));
