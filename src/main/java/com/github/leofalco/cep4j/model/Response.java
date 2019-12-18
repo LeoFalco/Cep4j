@@ -2,7 +2,6 @@ package com.github.leofalco.cep4j.model;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.ToString;
 import org.apache.http.Header;
 
 @Getter

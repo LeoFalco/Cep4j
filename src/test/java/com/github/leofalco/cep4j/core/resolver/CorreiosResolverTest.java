@@ -1,5 +1,6 @@
 package com.github.leofalco.cep4j.core.resolver;
 
+import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.core.Cep4jImpl;
 import com.github.leofalco.cep4j.core.resolvers.impl.CorreiosResolver;
 import com.github.leofalco.cep4j.exceptions.ManyException;

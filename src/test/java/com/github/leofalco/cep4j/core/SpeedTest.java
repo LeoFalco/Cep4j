@@ -32,7 +32,7 @@ public class SpeedTest {
 
         Cep4jImpl cep4j = new Cep4jImpl(new CorreiosResolver());
 
-        Cep join = cep4j.fetch("15154000");
+        Cep join = cep4j.fetch("15110000");
 
     }
 }
