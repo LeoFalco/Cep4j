@@ -28,8 +28,7 @@ public class PostmonResolverTest implements ResolverTest {
         Assert.assertEquals("3517505", cep.getIbge());
     }
 
-    @Test
-    @Disabled
+    // @Test
     public void fetchRuaAuriflama() {
         Cep4jImpl cep4j = new Cep4jImpl(new PostmonResolver());
         Cep cep = cep4j.fetch("15043330");
