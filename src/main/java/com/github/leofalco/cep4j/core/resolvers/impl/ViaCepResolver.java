@@ -1,7 +1,6 @@
 package com.github.leofalco.cep4j.core.resolvers.impl;
 
 import com.github.leofalco.cep4j.Http;
-import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.core.resolvers.base.ResolverBase;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.Cep;

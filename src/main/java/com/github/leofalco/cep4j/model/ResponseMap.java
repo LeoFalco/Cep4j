@@ -13,22 +13,23 @@ public class ResponseMap {
     private final String status;
     private final Map<String, ?> map;
 
-    public ResponseMap(String status, Map<String, ?> map) {
+    public ResponseMap(final String status, final Map<String, ?> map) {
         this.status = status;
         this.map = Collections.unmodifiableMap(map);
     }
 
-    public <T> T get(String path) {
+    @SuppressWarnings("unchecked")
+    public <T> T get(final String path) {
         Object temp = map;
-        String[] split = path.split("\\.");
+        final String[] split = path.split("\\.");
 
-        int length = split.length;
-        int maxIndex = length - 1;
+        final int length = split.length;
+        final int maxIndex = length - 1;
         for (int i = 0; i < length; i++) {
-            String key = split[i];
+            final String key = split[i];
 
             if (temp instanceof Map) {
-                //noinspection unchecked
+                // noinspection unchecked
                 temp = ((Map<String, ?>) temp).get(key);
             } else {
                 temp = getField(temp, key);
@@ -38,24 +39,25 @@ public class ResponseMap {
                 throw new NullPointerException("Null point when try to use: " + key);
             }
         }
-        //noinspection unchecked
+        // noinspection unchecked
         return (T) temp;
 
     }
 
     @SneakyThrows
-    private static <T> T getField(Object obj, String fieldName) {
-        Field[] fields = obj.getClass().getFields();
+    @SuppressWarnings("unchecked")
+    private static <T> T getField(final Object obj, final String fieldName) {
+        final Field[] fields = obj.getClass().getFields();
 
-        for (Field field : fields) {
+        for (final Field field : fields) {
             if (field.getName().equals(fieldName)) {
-                field.setAccessible(true);
-                //noinspection unchecked
+                field.setAccessible(true);            
+                // noinspection unchecked
                 return (T) field.get(obj);
 
             }
         }
-
+        
         throw new IllegalStateException("Campo não encontrado: " + fieldName);
     }
 

@@ -1,4 +1,17 @@
-tasks:
-  - init: mvn install -DskipTests=false
 image:
   file: .gitpod.Dockerfile
+
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 3000
+    onOpen: open-preview
+
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - init: echo 'init script' # runs during prebuild
+    command: echo 'start script'
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack@0.8.1:LRImBn//d5JhH4PUEI1BaQ==
+    - GabrielBB.vscode-lombok@1.0.1:IAvPOHnFmUYZpRqErUNAiQ==

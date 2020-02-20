@@ -1,6 +1,5 @@
 package com.github.leofalco.cep4j.core;
 
-import com.github.leofalco.cep4j.Json;
 import com.github.leofalco.cep4j.core.resolver.ResolverTest;
 import com.github.leofalco.cep4j.core.resolvers.impl.CorreiosResolver;
 import com.github.leofalco.cep4j.core.resolvers.impl.PostmonResolver;
@@ -13,7 +12,6 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockserver.integration.ClientAndServer;
 
 import java.io.IOException;
 import java.util.List;
