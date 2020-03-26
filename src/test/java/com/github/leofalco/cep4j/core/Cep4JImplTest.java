@@ -8,12 +8,9 @@ import com.github.leofalco.cep4j.exceptions.ManyException;
 import com.github.leofalco.cep4j.exceptions.ServiceException;
 import com.github.leofalco.cep4j.model.Cep;
 import org.assertj.core.api.Assertions;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -24,17 +21,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class Cep4JImplTest implements ResolverTest {
 
-    private static Cep4jImpl cep4j;
-
-    @BeforeClass
-    public static void setup() throws IOException {
-        cep4j = new Cep4jImpl(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
-    }
-
-    @AfterClass
-    public static void shutdown() {
-        //clientAndServer.stop();
-    }
+    private static Cep4jImpl cep4j = new Cep4jImpl(new ViaCepResolver(), new PostmonResolver(), new CorreiosResolver());
 
     @Test
     public void validationFail() {
@@ -73,13 +60,16 @@ public class Cep4JImplTest implements ResolverTest {
     @Override
     public void fetchRuaAuriflama() {
         Cep fetch = cep4j.fetch("15043-330");
+        assertThat(fetch.getCep()).isEqualTo("15043330");
+        assertThat(fetch.getCidade()).isEqualTo("São José do Rio Preto");
     }
 
 
     @Test
     @Override
     public void fetchEngenheiroBalduino() {
-
+        Cep fetch = cep4j.fetch("15150-000");
+        assertThat(fetch.getCep()).isEqualTo("15150000");
     }
 
     @Test

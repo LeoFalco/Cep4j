@@ -2,6 +2,7 @@ package com.github.leofalco.cep4j;
 
 import com.github.leofalco.cep4j.model.Response;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -15,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Http {
@@ -38,12 +40,17 @@ public class Http {
     }
 
     private static Response readResponse(HttpResponse httpResponse) throws IOException {
-        try (InputStream responseAsStream = httpResponse.getEntity().getContent()) {
+        HttpEntity entity = httpResponse.getEntity();
+        
+        Objects.requireNonNull(entity, "Entity cannot be null");
+        
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+        Header contentType = entity.getContentType();
+
+        try (InputStream responseAsStream = entity.getContent()) {
             try (InputStreamReader inputStreamReader = new InputStreamReader(responseAsStream, StandardCharsets.UTF_8)) {
                 try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
-                    int statusCode = httpResponse.getStatusLine().getStatusCode();
                     String responseAsString = bufferedReader.lines().collect(Collectors.joining());
-                    Header contentType = httpResponse.getEntity().getContentType();
                     return new Response(statusCode, contentType, responseAsString);
                 }
             }

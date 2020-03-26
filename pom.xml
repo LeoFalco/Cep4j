@@ -34,14 +34,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skipTests>false</skipTests>
 
-        <spotbugs.version>3.1.12</spotbugs.version>
+        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.sorce>12</maven.compiler.sorce>
+
+        <spotbugs.version>4.0.0</spotbugs.version>
         <maven-clean.version>3.1.0</maven-clean.version>
         <git-commit-id.version>2.2.4</git-commit-id.version>
         <maven-dependency.version>3.1.1</maven-dependency.version>
         <maven-compiler.version>3.8.1</maven-compiler.version>
         <maven-source.version>2.2.1</maven-source.version>
-        <maven-javadoc.version>2.9.1</maven-javadoc.version>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.5</jacoco.version>
 
         <jackson.version>2.10.0</jackson.version>
         <lombok.version>1.18.8</lombok.version>
@@ -54,7 +56,7 @@
     <build>
         <plugins>
 
-            <plugin>
+           <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
@@ -73,7 +75,7 @@
                     </execution>
                     <!-- Add this checking -->
                     <execution>
-                        <id>jacoco-check</id>
+                        <id>default-jacoco-check</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -92,7 +94,7 @@
                             </rules>
                         </configuration>
                     </execution>
-
+                    
                 </executions>
             </plugin>
             <plugin>
@@ -100,11 +102,20 @@
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>${spotbugs.version}</version>
                 <configuration>
-                    <effort>Max</effort>
                     <xmlOutput>true</xmlOutput>
+                    <excludeFilterFile>findbugs/findbugs-exclude.xml</excludeFilterFile>
+                    <effort>Max</effort>
+                    <threshold>Max</threshold>
+                    <failOnError>true</failOnError>
+                    <includeTests>true</includeTests>
                 </configuration>
                 <executions>
+                    <!--
+                    Ensures that FindBugs inspects source code when project is compiled.
+                    -->
                     <execution>
+                        <id>analyze-compile</id>
+                        <phase>compile</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -229,19 +240,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+           
         </plugins>
     </build>
 
