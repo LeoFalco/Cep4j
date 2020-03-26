@@ -1,7 +1,7 @@
 
 
 # Cep4j
-[![Build Status](https://travis-ci.org/LeoFalco/cep4j.svg?branch=master)](https://travis-ci.org/LeoFalco/cep4j)
+![Java CI](https://github.com/LeoFalco/Cep4j/workflows/Java%20CI/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/leofalco/cep4j/badge)](https://www.codefactor.io/repository/github/leofalco/cep4j)
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/LeoFalco/Cep4j) 
 
