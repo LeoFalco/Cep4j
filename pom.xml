@@ -3,7 +3,7 @@
 
     <groupId>com.github.leofalco</groupId>
     <artifactId>Cep4j</artifactId>
-    <version>0.1.8-SNAPSHOT</version>
+    <version>0.1.8</version>
     <name>Cep4j</name>
     <description>Lib para consulta de CEP para java inspirada na cep-promisse.</description>
     <url>https://github.com/LeoFalco/Cep4j</url>
@@ -17,7 +17,7 @@
     </developers>
 
     <scm>
-        <tag>v0.1.6</tag>
+        <tag>v0.1.8</tag>
         <url>https://github.com/LeoFalco/Cep4j</url>
         <developerConnection>scm:git:git@github.com:LeoFalco/Cep4j.git</developerConnection>
         <connection>scm:git:git@github.com:LeoFalco/Cep4j.git</connection>
@@ -193,22 +193,28 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.9.5</version>
-                    </dependency>
-                </dependencies>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>1.14.0</version>
                 <configuration>
-                    <tagNameFormat>v@{project.version}</tagNameFormat>
-                    <connectionUrl>scm:git:https://github.com/LeoFalco/Cep4j</connectionUrl>
-                    <remoteTagging>true</remoteTagging>
-                    <updateBranchVersions>true</updateBranchVersions>
-                    <updateWorkingCopyVersions>true</updateWorkingCopyVersions>
+
+                    <installProject>false</installProject>
+                    <verbose>false</verbose>
+                    <keepBranch>true</keepBranch>
+                    <skipTestProject>true</skipTestProject>
+
+                    <gitFlowConfig>
+                        <productionBranch>master</productionBranch>
+                        <developmentBranch>master</developmentBranch>
+                        <featureBranchPrefix>feature/</featureBranchPrefix>
+                        <releaseBranchPrefix>release/</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+                        <versionTagPrefix></versionTagPrefix>
+                        <origin>origin</origin>
+                    </gitFlowConfig>
+                    <commitMessages>
+                        <!-- since 1.2.1, see Customizing commit messages -->
+                    </commitMessages>
                 </configuration>
             </plugin>
 
