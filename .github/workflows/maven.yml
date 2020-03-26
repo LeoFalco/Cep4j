@@ -29,3 +29,15 @@ jobs:
 
     - name: Build with Maven
       run: mvn clean test install
+
+  publish:
+    if: github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add tag 
+        run: mvn -B gitflow:release
+
+      - name: Deploy
+        run: mvn deploy -Dregistry=https://maven.pkg.github.com/phanatic -Dtoken=${{ secrets.PUBLUSH_PACKAGES_TOKEN }}
