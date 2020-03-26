@@ -16,6 +16,14 @@
         </developer>
     </developers>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub LeoFalco Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/LeoFalco/Cep4j</url>
+        </repository>
+    </distributionManagement>
+
     <scm>
         <tag>v0.1.8</tag>
         <url>https://github.com/LeoFalco/Cep4j</url>

@@ -59,8 +59,8 @@ jobs:
     
     - name: Configure git
       run: |
-        - git config user.email "${{ github.event.commits[0].autor.email }}"
-        - git config user.name "${{ github.event.commits[0].autor.name }}"
+         git config user.email "${{ 'leonardo.falco@outlook.com' }}"
+         git config user.name "${{ 'Leonardo Jesus Falco' }}"
 
     - name: Add tag 
       run: mvn -B gitflow:release
