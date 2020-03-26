@@ -46,7 +46,7 @@
         <jacoco.version>0.8.5</jacoco.version>
 
         <jackson.version>2.10.0</jackson.version>
-        <lombok.version>1.18.8</lombok.version>
+        <lombok.version>1.18.12</lombok.version>
         <httpclient.version>4.5.9</httpclient.version>
         <junit.version>4.12</junit.version>
         <assertj.version>3.11.1</assertj.version>
