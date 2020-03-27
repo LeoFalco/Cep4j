@@ -57,7 +57,7 @@
         <lombok.version>1.18.12</lombok.version>
         <httpclient.version>4.5.9</httpclient.version>
         <junit.version>4.13</junit.version>
-        <assertj.version>3.11.1</assertj.version>
+        <assertj.version>3.15.0</assertj.version>
 
         <connectionUrl>https://github.com/LeoFalco/Cep4j</connectionUrl>
     </properties>
