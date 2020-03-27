@@ -30,8 +30,9 @@ jobs:
     - name: Build with Maven
       run: mvn clean test install
 
+
   publish:
-    if: github.ref == 'refs/heads/master'
+    if: ${{ false }}
     needs: build
     runs-on: ubuntu-latest
 
