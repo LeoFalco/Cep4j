@@ -10,7 +10,11 @@ jobs:
         java: [8, 11]
 
     runs-on: ${{ matrix.os }}
+    
     steps:
+    - name: Dump Context
+      run: echo ${{ toJson(github) }}
+      
     - name: Checkout
       uses: actions/checkout@v2
 
