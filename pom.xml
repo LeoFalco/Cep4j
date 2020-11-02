@@ -47,7 +47,7 @@
 
         <spotbugs.version>4.0.0</spotbugs.version>
         <maven-clean.version>3.1.0</maven-clean.version>
-        <git-commit-id.version>4.0.0</git-commit-id.version>
+        <git-commit-id.version>4.0.3</git-commit-id.version>
         <maven-dependency.version>3.1.1</maven-dependency.version>
         <maven-compiler.version>3.8.1</maven-compiler.version>
         <maven-source.version>3.2.1</maven-source.version>
