@@ -51,7 +51,7 @@
         <maven-dependency.version>3.1.1</maven-dependency.version>
         <maven-compiler.version>3.8.1</maven-compiler.version>
         <maven-source.version>3.2.1</maven-source.version>
-        <jacoco.version>0.8.5</jacoco.version>
+        <jacoco.version>0.8.7</jacoco.version>
 
         <jackson.version>2.10.3</jackson.version>
         <lombok.version>1.18.12</lombok.version>
