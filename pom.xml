@@ -45,7 +45,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <maven.compiler.sorce>12</maven.compiler.sorce>
 
-        <spotbugs.version>4.0.0</spotbugs.version>
+        <spotbugs.version>4.4.2.2</spotbugs.version>
         <maven-clean.version>3.1.0</maven-clean.version>
         <git-commit-id.version>4.0.0</git-commit-id.version>
         <maven-dependency.version>3.1.1</maven-dependency.version>
